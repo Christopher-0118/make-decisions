@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # Optional: Mac system files
 *.DS_Store
+
+# React Router framework mode generated types/build
+.react-router/
