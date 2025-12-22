@@ -31,8 +31,12 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: clamp(20px, 4vw, 32px);
   line-height: 1.1;
+}
+
+p {
+  font-size: clamp(14px, 3.2vw, 16px); 
 }
 
 button {
