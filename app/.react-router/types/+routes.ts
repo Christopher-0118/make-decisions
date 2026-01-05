@@ -38,8 +38,8 @@ type RouteFiles = {
     id: "routes/home";
     page: "/";
   };
-  "./routes/wheel.tsx": {
-    id: "routes/wheel";
+  "./routes/WheelRoute.tsx": {
+    id: "routes/WheelRoute";
     page: "/wheel";
   };
   "./routes/dice.tsx": {
@@ -56,7 +56,7 @@ type RouteModules = {
   "root": typeof import("./src/root.tsx");
   "routes/layout": typeof import("./src/./routes/layout.tsx");
   "routes/home": typeof import("./src/./routes/home.tsx");
-  "routes/wheel": typeof import("./src/./routes/wheel.tsx");
+  "routes/WheelRoute": typeof import("./src/./routes/WheelRoute.tsx");
   "routes/dice": typeof import("./src/./routes/dice.tsx");
   "routes/coin": typeof import("./src/./routes/coin.tsx");
 };

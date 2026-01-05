@@ -1,15 +1,24 @@
-export type Rng = () => number;
+import {
+  OR_A,
+  OR_B,
+  SHIFT_A,
+  SHIFT_B,
+  SHIFT_C,
+  STATE_INCREMENT,
+  TO_UINT32_SHIFT,
+  UINT32_DENOMINATOR,
+  type Rng,
+} from './type';
 
-/**
- * Mulberry32: simple seedable PRNG.
- * returns float in range [0, 1).
- */
-export function mulberry32(seed: number): Rng {
-  let t = seed >>> 0;
+const mulberry32 = (seed: number): Rng => {
+  let state = seed >>> TO_UINT32_SHIFT;
   return function () {
-    t += 0x6d2b79f5;
-    let r = Math.imul(t ^ (t >>> 15), 1 | t);
-    r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
-    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+    state += STATE_INCREMENT;
+
+    let mixed = Math.imul(state ^ (state >>> SHIFT_A), OR_A | state);
+    mixed ^= mixed + Math.imul(mixed ^ (mixed >>> SHIFT_B), OR_B | mixed);
+    return ((mixed ^ (mixed >>> SHIFT_C)) >>> TO_UINT32_SHIFT) / UINT32_DENOMINATOR;
   };
-}
+};
+
+export default mulberry32;
