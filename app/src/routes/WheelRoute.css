@@ -1,0 +1,7 @@
+.wheelPage {
+  height: 70dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

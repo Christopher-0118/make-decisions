@@ -1,13 +1,11 @@
 import { useMemo, useState } from 'react';
-import Wheel from '@/components/Wheel';
+import Wheel from '@/components/Wheel/Wheel';
 import useRandomizer from '@/hooks/useRandomizer';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
+import BottomSheet from '@/components/BottomSheet/BottomSheet';
+import Tab from '@/components/Tab/Tab';
+import "./WheelRoute.css";
 
-/**
- *
- * Добавить подтягивание списка из store
- * Вынести стили в wheelroute.css
- */
 
 const WheelRoute = () => {
   const count: number = 1; // from settings || default
@@ -27,10 +25,15 @@ const WheelRoute = () => {
   const highlightedIds = useMemo(() => result.map((item) => item.id), [result]);
 
   return (
-    <div style={{ padding: 16, display: 'grid', gap: 12 }}>
+    <div className={"wheelPage"}>
       <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
       <button onClick={() => spin(count)}>Spin</button>
       <div>Picked: {result.map((item) => item.id).join(', ') || '—'}</div>
+    
+    <BottomSheet>
+      <Tab id={'settings'} active={true} />
+      <Tab id={'history'} active={false} />
+    </BottomSheet>
     </div>
   );
 };

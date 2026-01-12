@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { CENTER, RADIUS, type WheelProps } from './type';
+import { CENTER, RADIUS, type WheelProps } from '../type';
 import './Wheel.css';
 
 const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
