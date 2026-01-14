@@ -3,8 +3,10 @@ import Wheel from '@/components/Wheel/Wheel';
 import useRandomizer from '@/hooks/useRandomizer';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import Tab from '@/components/Tab/Tab';
 import "./WheelRoute.css";
+import History from '@/components/History';
+import Settings from '@/components/Settings';
+import Tabs from '@/components/Tabs/Tabs';
 
 
 const WheelRoute = () => {
@@ -31,8 +33,11 @@ const WheelRoute = () => {
       <div>Picked: {result.map((item) => item.id).join(', ') || '—'}</div>
     
     <BottomSheet>
-      <Tab id={'settings'} active={true} />
-      <Tab id={'history'} active={false} />
+    <Tabs
+      settingsContent={<Settings />}
+      historyContent={<History />}
+      defaultTab = "settings"
+    />
     </BottomSheet>
     </div>
   );
