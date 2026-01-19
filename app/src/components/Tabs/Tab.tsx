@@ -5,19 +5,17 @@ import './tab.css';
 const Tab = ({ id, label, isActive, onSelect }: TabProps) => {
   return (
     <motion.li
-      className={"tab"}
+      className={'tab'}
       role="tab"
       aria-selected={isActive}
       initial={false}
       animate={{
-        backgroundColor: isActive ? "rgba(0, 0, 0, 0.06)" : "transparent",
+        backgroundColor: isActive ? 'rgba(0, 0, 0, 0.06)' : 'transparent',
       }}
-      onClick={() => onSelect(id) }
+      onClick={() => onSelect(id)}
     >
-      <span className="label">
-        {label}
-      </span>
-      {isActive ? (<motion.div className="underline" layoutId="tabs-underline" />) : null}
+      <span className="label">{label}</span>
+      {isActive ? <motion.div className="underline" layoutId="tabs-underline" /> : null}
     </motion.li>
   );
 };

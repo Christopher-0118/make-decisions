@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, type PanInfo } from "framer-motion";
-import styles from "./bottomSheet.module.css";
-import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK } from "../type";
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
+import styles from './bottomSheet.module.css';
+import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK } from '../type';
 
 const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
@@ -62,9 +62,9 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
         role="dialog"
         aria-modal="true"
         aria-expanded={open}
-        initial={{y: 9999}}
+        initial={{ y: 9999 }}
         animate={{ y: open ? 0 : closedOffsetY }}
-        transition={{ type: "spring", stiffness: 420, damping: 38 }}
+        transition={{ type: 'spring', stiffness: 420, damping: 38 }}
         drag="y"
         dragConstraints={{ top: 0, bottom: closedOffsetY }}
         dragElastic={0.05}
@@ -75,15 +75,13 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
           type="button"
           className={styles.handleButton}
           onClick={() => setOpen(!open)}
-          aria-label={open ? "Close panel" : "Open panel"}
+          aria-label={open ? 'Close panel' : 'Open panel'}
         >
           <div className={styles.grabber} />
         </button>
 
         {/* Content */}
-        <div className={styles.content}>
-          {children}
-        </div>
+        <div className={styles.content}>{children}</div>
       </motion.div>
     </>
   );

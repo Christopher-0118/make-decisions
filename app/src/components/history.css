@@ -1,0 +1,19 @@
+.results-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.result {
+  height: 4.62%;
+  padding: 0 5%;
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

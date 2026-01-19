@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { wheelReducer } from './wheelSlice';
+import { wheelReducer } from './wheelSettingsSlice';
+import wheelHistorySlice from './wheelHistorySlice';
 import { diceReducer } from './diceSlice';
 import { coinReducer } from './coinSlice';
 
 export const store = configureStore({
   reducer: {
+    wheelHistory: wheelHistorySlice,
     wheel: wheelReducer,
     dice: diceReducer,
     coin: coinReducer,

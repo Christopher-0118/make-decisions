@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
-import { CONTENT_VARIANTS, FLICK_VELOCITY, type TabsProps } from '../type';
+import { useState } from 'react';
+import { FLICK_VELOCITY, type TabsProps } from '../type';
 import './tabs.css';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
-import { FULL_CIRCLE } from '@/routes/types';
 import Tab from './Tab';
 
 const Tabs = ({
@@ -11,17 +10,8 @@ const Tabs = ({
   defaultTab = 'settings',
   swipeEnabled = true,
   swipeThresholdPx = 60,
-  onTabChange
 }: TabsProps) => {
   const [active, setActive] = useState<'settings' | 'history'>(defaultTab);
-  // const [visited, setHistoryVisited] = useState(defaultTab === 'history');
-  
-  // useEffect(() => {
-  //   if(active === 'history') setHistoryVisited(true);
-
-  //   onTabChange?.(active);
-  // }, [active, onTabChange]);
-
   const handleSelect = (tab: 'settings' | 'history') => {
     setActive(tab);
   };
@@ -29,18 +19,19 @@ const Tabs = ({
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     if (!swipeEnabled) return;
 
-    const {offset, velocity} = info;
+    const { offset, velocity } = info;
     const swipeLeft = offset.x < -swipeThresholdPx || velocity.x < -FLICK_VELOCITY;
-    const swipeRight = offset.x > swipeThresholdPx || velocity.x > FULL_CIRCLE
+    const swipeRight = offset.x > swipeThresholdPx || velocity.x > FLICK_VELOCITY;
+
     if (active === 'settings' && swipeRight) {
       setActive('history');
       return;
-    } else if ( active === 'history' && swipeLeft) {
+    } else if (active === 'history' && swipeLeft) {
       setActive('settings');
       return;
     }
   };
-  
+
   return (
     <div className="root">
       <nav className="nav" aria-label="Tabs">
@@ -48,14 +39,14 @@ const Tabs = ({
           <Tab
             id="settings"
             label="Настройки"
-            isActive={active === "settings"}
-            onSelect={() => handleSelect("settings")}
+            isActive={active === 'settings'}
+            onSelect={() => handleSelect('settings')}
           />
           <Tab
             id="history"
             label="История"
-            isActive={active === "history"}
-            onSelect={() => handleSelect("history")}
+            isActive={active === 'history'}
+            onSelect={() => handleSelect('history')}
           />
         </ul>
       </nav>
@@ -69,19 +60,18 @@ const Tabs = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            drag={swipeEnabled ? "x" : false}
+            drag={swipeEnabled ? 'x' : false}
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.05}
             onDragEnd={handleDragEnd}
           >
-            {active === "settings" ? settingsContent : null}
-            {active === "history" ? historyContent : null} 
-            {/* {(historyVisited ? historyContent : null) : null} */}
+            {active === 'settings' ? settingsContent : null}
+            {active === 'history' ? historyContent : null}
           </motion.div>
         </AnimatePresence>
       </div>
     </div>
   );
-}
+};
 
 export default Tabs;
