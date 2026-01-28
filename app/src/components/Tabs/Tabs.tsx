@@ -38,13 +38,13 @@ const Tabs = ({
         <ul className="list" role="tablist">
           <Tab
             id="settings"
-            label="Настройки"
+            label="Settings"
             isActive={active === 'settings'}
             onSelect={() => handleSelect('settings')}
           />
           <Tab
             id="history"
-            label="История"
+            label="History"
             isActive={active === 'history'}
             onSelect={() => handleSelect('history')}
           />

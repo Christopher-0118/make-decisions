@@ -1,22 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-type WheelState = {
-  spins: number;
+type ResultsState = {
+  count: number;
 };
 
-const initialState: WheelState = {
-  spins: 0,
+const initialState: ResultsState = {
+  count: 1,
 };
 
-const wheelSlice = createSlice({
-  name: 'wheel',
+const ResultsSlice = createSlice({
+  name: 'resultsCount',
   initialState,
   reducers: {
-    spin(state) {
-      state.spins += 1;
+    setCount: (state, action: PayloadAction<number>) => {
+      state.count = action.payload;
+    },
+    increment: (state) => {
+      state.count += 1;
+    },
+    decrement: (state) => {
+      state.count -= 1;
     },
   },
 });
 
-export const { spin } = wheelSlice.actions;
-export const wheelReducer = wheelSlice.reducer;
+export const { setCount, increment, decrement } = ResultsSlice.actions;
+export default ResultsSlice.reducer;

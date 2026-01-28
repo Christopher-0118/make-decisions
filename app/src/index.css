@@ -50,14 +50,19 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
 }
-button:hover {
-  border-color: #646cff;
+
+button:focus {
+  outline: none;
+  box-shadow: none;
 }
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
+
+button:active {
+  background-color: inherit;
+} 
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -70,4 +75,12 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.iconTrash {
+  size: 20px;
+  background: none;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
 }

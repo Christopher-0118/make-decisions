@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { wheelReducer } from './wheelSettingsSlice';
+import wheelSettingsSlice from './wheelSettingsSlice';
 import wheelHistorySlice from './wheelHistorySlice';
 import { diceReducer } from './diceSlice';
 import { coinReducer } from './coinSlice';
@@ -7,7 +7,7 @@ import { coinReducer } from './coinSlice';
 export const store = configureStore({
   reducer: {
     wheelHistory: wheelHistorySlice,
-    wheel: wheelReducer,
+    resultsCount: wheelSettingsSlice,
     dice: diceReducer,
     coin: coinReducer,
   },

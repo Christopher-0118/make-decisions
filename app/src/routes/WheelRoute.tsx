@@ -4,14 +4,16 @@ import useRandomizer from '@/hooks/useRandomizer';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
 import './WheelRoute.css';
-import Settings from '@/components/Settings';
+import Settings from '@/components/Settings/Settings';
 import Tabs from '@/components/Tabs/Tabs';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addEntry } from '@/store/wheelHistorySlice';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 const WheelRoute = () => {
-  const count: number = 1; // from settings || default
+  const count = useAppSelector((state) => state.resultsCount.count);
   const dispatch = useAppDispatch();
+  //------------------------------------------------
   const segments: { id: string; label: string }[] = [
     // from settings || default
     { id: 'banana', label: 'banana' },
@@ -19,7 +21,8 @@ const WheelRoute = () => {
     { id: 'apple', label: 'apple' },
     { id: 'strawberry', label: 'strawberry' },
   ];
-  const History = lazy(() => import('@/components/History'));
+  //------------------------------------------------
+  const History = lazy(() => import('@/components/History/History'));
   const [rotation, setRotation] = useState(0);
   const { result, generate } = useRandomizer({ seed: SEED, values: segments, unique: true });
   const spin = (count: number) => {

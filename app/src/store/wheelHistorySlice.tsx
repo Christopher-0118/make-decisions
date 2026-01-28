@@ -23,11 +23,11 @@ const wheelHistorySlice = createSlice({
         };
       },
     },
-    deleteAllEntries(state) {
+    clearAllEntries(state) {
       state.entries = [];
     },
   },
 });
 
-export const { addEntry, deleteAllEntries } = wheelHistorySlice.actions;
+export const { addEntry, clearAllEntries } = wheelHistorySlice.actions;
 export default wheelHistorySlice.reducer;
