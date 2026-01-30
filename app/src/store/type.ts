@@ -1,3 +1,5 @@
+// Store
+
 // WheelHistory
 export type WheelHistoryResult = {
   id: number;

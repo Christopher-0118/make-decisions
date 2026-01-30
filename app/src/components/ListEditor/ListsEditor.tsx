@@ -1,9 +1,9 @@
 import styles from './ListsEditor.module.css';
-import { ChevronUp, Trash2Icon} from 'lucide-react';
+import { ChevronUp, Trash2Icon } from 'lucide-react';
 import type { ListsEditorProps } from '../type';
 import { useRef, useState } from 'react';
 
- const ListsEditor = ({
+const ListsEditor = ({
   lists,
   activeListId,
   expandedListId,
@@ -23,18 +23,12 @@ import { useRef, useState } from 'react';
     const text = (draftByListId[listId] ?? '').trim();
     if (!text) return;
 
-    // защита от двойного коммита (Enter -> blur)
     if (commitLockRef.current[listId]) return;
     commitLockRef.current[listId] = true;
-
     onAddItem(listId, text);
-
     setDraftByListId((prev) => ({ ...prev, [listId]: '' }));
-
-    // вернуть фокус в это же поле (кажется как "создалось новое пустое")
     requestAnimationFrame(() => {
       inputRefs.current[listId]?.focus();
-      // снимаем лок после того, как blur отработал
       setTimeout(() => {
         commitLockRef.current[listId] = false;
       }, 0);
@@ -45,16 +39,10 @@ import { useRef, useState } from 'react';
     <section className={styles.block}>
       <div className={styles.blockTitle}>
         <div>Lists:</div>
-        <button 
-          type="button" 
-          aria-label="Add a list"
-          className={styles.addBtn}
-          onClick={onAddList}
-        >
+        <button type="button" aria-label="Add a list" className={styles.addBtn} onClick={onAddList}>
           +
         </button>
       </div>
-      
 
       <div className={styles.lists}>
         {lists.map((list) => {
@@ -63,9 +51,7 @@ import { useRef, useState } from 'react';
 
           return (
             <div key={list.id} className={styles.listCard}>
-              <div
-                className={`${styles.row} ${isActive ? styles.rowActive : ''}`}
-              >
+              <div className={`${styles.row} ${isActive ? styles.rowActive : ''}`}>
                 <button
                   type="button"
                   aria-label="Choose the list"
@@ -93,14 +79,14 @@ import { useRef, useState } from 'react';
                       <label className={styles.label}>Name</label>
                       <button
                         type="button"
-                        className='iconTrash'
+                        className="iconTrash"
                         onClick={() => onDeleteList(list.id)}
                         aria-label="Delete the list"
-                        >
-                          <Trash2Icon size={15} color='#213547' />
-                        </button>
+                      >
+                        <Trash2Icon size={15} color="#213547" />
+                      </button>
                     </div>
-                    <input 
+                    <input
                       className={styles.input}
                       value={list.name}
                       onChange={(e) => onChangeListName(list.id, e.target.value)}
@@ -152,6 +138,6 @@ import { useRef, useState } from 'react';
       </div>
     </section>
   );
-}
+};
 
 export default ListsEditor;

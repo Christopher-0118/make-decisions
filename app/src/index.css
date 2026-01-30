@@ -52,7 +52,6 @@ button {
   transition: border-color 0.25s;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-
 }
 
 button:focus {
@@ -62,7 +61,7 @@ button:focus {
 
 button:active {
   background-color: inherit;
-} 
+}
 
 @media (prefers-color-scheme: light) {
   :root {
