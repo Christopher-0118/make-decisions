@@ -12,6 +12,10 @@ export type ListModel = {
   items: string[];
 };
 
+export type ListModelState = {
+  collection: ListModel[];
+};
+
 export type CountSelectorProps = {
   value: number;
   min: number;

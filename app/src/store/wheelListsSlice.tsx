@@ -1,14 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-type ListModel = {
-  id: string;
-  name: string;
-  items: string[];
-};
-
-type ListModelState = {
-  collection: ListModel[];
-};
+import type { ListModel, ListModelState } from '@/components/type';
 
 const initialState: ListModelState = {
   collection: [],

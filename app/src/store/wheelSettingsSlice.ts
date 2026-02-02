@@ -11,7 +11,7 @@ const initialState: wheelSettingsState = {
 };
 
 const wheelSettingsSlice = createSlice({
-  name: 'resultsCount',
+  name: 'wheelSettings',
   initialState,
   reducers: {
     setCount: (state, action: PayloadAction<number>) => {

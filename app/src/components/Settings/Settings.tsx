@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import styles from './Settings.module.css';
 import CountSelector from '../CountSelector/CountSelector';
 import ListsEditor from '../ListEditor/ListsEditor';
@@ -17,20 +17,19 @@ import {
 
 const Settings = () => {
   const dispatch = useAppDispatch();
-
   const lists = useAppSelector((state) => state.wheelLists.collection);
   const resultsCount = useAppSelector((state) => state.wheelSettings.count);
   const activeListId = useAppSelector((state) => state.wheelSettings.activeList);
-
-  //const [activeListId, setActiveListId] = useState<string>(lists[0]?.id ?? '');
   const [expandedListId, setExpandedListId] = useState<string | null>(null);
-
   const activeList = useMemo(
     () => lists.find((l) => l.id === activeListId) ?? null,
     [lists, activeListId],
   );
-
-  const maxCount = Math.max(1, (activeList?.items.length ?? 0) - 1);
+  const maxCount = activeList?.items.length ?? 0;
+  useEffect(() => {
+    const nextResCount = maxCount > 1 ? 1 : 0;
+    dispatch(setCount(nextResCount));
+  }, [dispatch, maxCount]);
   const makeNewListName = () => `List ${lists.length ? lists.length : ''}`;
   const makeNewListId = () => `list_${Date.now()}`;
 
@@ -56,9 +55,9 @@ const Settings = () => {
     <div className={styles.root}>
       <CountSelector
         value={resultsCount}
-        min={1}
+        min={0}
         max={maxCount}
-        onChange={(next) => dispatch(setCount(clamp(next, 1, maxCount)))}
+        onChange={(nextResCount) => dispatch(setCount(clamp(nextResCount, 0, maxCount)))}
       />
 
       <ListsEditor

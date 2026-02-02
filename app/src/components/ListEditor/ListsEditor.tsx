@@ -64,7 +64,7 @@ const ListsEditor = ({
                   type="button"
                   className={styles.rowToggle}
                   onClick={() => onToggleExpanded(list.id)}
-                  aria-label={isExpanded ? 'Expand' : 'Edit'}
+                  aria-label={isExpanded ? 'Collapse' : 'Edit'}
                 >
                   <ChevronUp
                     className={`${styles.chevron} ${isExpanded ? styles.chevronOpen : ''}`}

@@ -7,6 +7,9 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
   const highlighted = useMemo(() => new Set(highlightedIds), [highlightedIds]);
   const slices = useMemo(() => {
     const segmentsNumber = segments.length;
+
+    if (segmentsNumber === 0) return [];
+
     const angle = (2 * Math.PI) / segmentsNumber;
     const polarToXY = (cx: number, cy: number, r: number, a: number) => ({
       x: cx + r * Math.cos(a),
