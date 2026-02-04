@@ -1,7 +1,9 @@
-.wheelPage {
+.page {
+  min-width: 320px;
   height: 70dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
 }

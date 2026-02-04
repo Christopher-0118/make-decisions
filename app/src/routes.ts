@@ -4,7 +4,7 @@ export default [
   route('/', './routes/layout.tsx', [
     index('./routes/home.tsx'),
     route('wheel', './routes/WheelRoute.tsx'),
+    route('coin', './routes/CoinRoute.tsx'),
     route('dice', './routes/dice.tsx'),
-    route('coin', './routes/coin.tsx'),
   ]),
 ];
