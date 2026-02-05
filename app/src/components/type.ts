@@ -5,6 +5,15 @@ export const PEEK = 20;
 export const CLOSE_RATIO = 0.3;
 export const OPEN_RATIO = 0.15;
 export const FLICK_VELOCITY = 800;
+export const FULL_TURNS = 3;
+export const FULL_FLIP = 360 * FULL_TURNS;
+export const HALF_FLIP = 180;
+
+export type CoinProps = {
+  side: 'heads' | 'tails';
+  isFlipping: boolean;
+  onFlipEnd?: () => void;
+};
 
 export type ListModel = {
   id: string;
