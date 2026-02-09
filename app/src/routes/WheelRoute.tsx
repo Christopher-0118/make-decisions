@@ -9,12 +9,14 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { addEntry } from '@/store/wheelHistorySlice';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
 import type { ListModel, Segment } from '@/components/type';
+import { clearAllEntries } from '@/store/wheelHistorySlice';
 import './page.css';
 
 const WheelRoute = () => {
   const count = useAppSelector((state) => state.wheelSettings.count);
+  const history = useAppSelector((state) => state.wheelHistory.entries);
   const dispatch = useAppDispatch();
-
+ 
   const activeListId = useAppSelector((state) => state.wheelSettings.activeList);
   const lists: ListModel[] = useAppSelector((state) => state.wheelLists.collection);
   const activeList = lists.find((list) => list.id === activeListId);
@@ -50,7 +52,7 @@ const WheelRoute = () => {
           settingsContent={<Settings />}
           historyContent={
             <Suspense fallback={<div>Loading...</div>}>
-              <History />
+              <History  entries={history} onClear={() => dispatch(clearAllEntries())} />
             </Suspense>
           }
           defaultTab="settings"

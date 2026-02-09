@@ -51,7 +51,7 @@
     0 4px 0 #9e7f1c,
     0 5px 0 #8c6f13,
     0 6px 1px rgba(0, 0, 0, 0.1),
-    0 10px 20px rgba(0, 0, 0, 0.3);
+    0 10px 30px rgba(0, 0, 0, 0.3);
 
   transform: translateZ(6px);
 }
@@ -77,6 +77,7 @@
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(114, 76, 23, 0.911);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  transform: perspective(400px) rotateX(30deg);
 }
