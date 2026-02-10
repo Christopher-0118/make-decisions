@@ -1,25 +1,26 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type HistoryResults, type HistoryState } from './type';
+import type { CoinSide } from '@/components/type';
+import type { HistoryResults, HistoryState } from './type';
 
 const initialState: HistoryState = {
   entries: [],
 };
 
-const wheelHistorySlice = createSlice({
-  name: 'wheelHistory',
+const coinHistorySlice = createSlice({
+  name: 'coinHistory',
   initialState,
   reducers: {
     addEntry: {
       reducer(state, action: PayloadAction<HistoryResults>) {
         state.entries.unshift(action.payload);
       },
-      prepare(results: string[]) {
+      prepare(results: CoinSide) {
         return {
           payload: {
             id: Date.now(),
             time: new Date().toLocaleTimeString('en-En'),
             results,
-          } satisfies HistoryResults,
+          } satisfies HistoryResults
         };
       },
     },
@@ -29,5 +30,5 @@ const wheelHistorySlice = createSlice({
   },
 });
 
-export const { addEntry, clearAllEntries } = wheelHistorySlice.actions;
-export default wheelHistorySlice.reducer;
+export const { addEntry, clearAllEntries } = coinHistorySlice.actions;
+export default coinHistorySlice.reducer;

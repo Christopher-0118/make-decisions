@@ -36,12 +36,18 @@ const Tabs = ({
     <div className="root">
       <nav className="nav" aria-label="Tabs">
         <ul className="list" role="tablist">
-          <Tab
-            id="settings"
-            label="Settings"
-            isActive={active === 'settings'}
-            onSelect={() => handleSelect('settings')}
-          />
+          { settingsContent 
+            ? (
+              <Tab
+                id="settings"
+                label="Settings"
+                isActive={active === 'settings'}
+                onSelect={() => handleSelect('settings')}
+              />
+            )
+            : null
+          }
+          
           <Tab
             id="history"
             label="History"

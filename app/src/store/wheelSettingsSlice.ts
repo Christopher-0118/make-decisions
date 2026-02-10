@@ -1,9 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-type wheelSettingsState = {
-  count: number;
-  activeList: string;
-};
+import type { wheelSettingsState } from './type';
 
 const initialState: wheelSettingsState = {
   count: 1,
