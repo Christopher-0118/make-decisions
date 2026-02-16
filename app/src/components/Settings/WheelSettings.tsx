@@ -15,7 +15,7 @@ import {
   addListItem,
 } from '@/store/wheelListsSlice';
 
-const Settings = () => {
+const WheelSettings = () => {
   const dispatch = useAppDispatch();
   const lists = useAppSelector((state) => state.wheelLists.collection);
   const resultsCount = useAppSelector((state) => state.wheelSettings.count);
@@ -77,4 +77,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default WheelSettings;

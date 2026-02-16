@@ -20,7 +20,7 @@ const coinHistorySlice = createSlice({
             id: Date.now(),
             time: new Date().toLocaleTimeString('en-En'),
             results,
-          } satisfies HistoryResults
+          } satisfies HistoryResults,
         };
       },
     },

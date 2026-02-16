@@ -33,8 +33,6 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
     } else if (offset.y < -closedOffsetY * OPEN_RATIO || velocity.y < -FLICK_VELOCITY) {
       setOpen(true);
       return;
-    } else {
-      setOpen(open);
     }
   };
 

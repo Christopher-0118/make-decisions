@@ -1,6 +1,6 @@
 // Store
 
-import type { CoinSide } from "@/components/type";
+import type { CoinSide } from '@/components/type';
 
 export type HistoryResults = {
   id: number;

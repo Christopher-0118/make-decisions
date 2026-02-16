@@ -2,8 +2,7 @@ import type { HistoryProps } from '../type';
 import { Trash2 } from 'lucide-react';
 import './history.css';
 
-const History = ({entries, onClear}: HistoryProps) => {
-
+const History = ({ entries, onClear }: HistoryProps) => {
   return (
     <div className="results-table">
       <div className="table-header">

@@ -1,4 +1,4 @@
-import type { HistoryResults } from "@/store/type";
+import type { HistoryResults } from '@/store/type';
 
 // components
 export const RADIUS = 50;
@@ -20,25 +20,11 @@ export type CoinProps = {
   onFlipEnd?: () => void;
 };
 
-export type ListModel = {
-  id: string;
-  name: string;
-  items: string[];
-};
-
-export type ListModelState = {
-  collection: ListModel[];
-};
-
 export type CountSelectorProps = {
   value: number;
   min: number;
   max: number;
   onChange: (next: number) => void;
-};
-
-export type SettingsTabProps = {
-  initialLists?: ListModel[];
 };
 
 export type HistoryProps = {
@@ -61,6 +47,23 @@ export type TabsProps = {
   swipeThresholdPx?: number;
 };
 
+export type WheelProps = {
+  segments: Segment[];
+  rotationDeg?: number;
+  highlightedIds?: string[];
+  size?: number;
+};
+
+export type ListModel = {
+  id: string;
+  name: string;
+  items: string[];
+};
+
+export type ListModelState = {
+  collection: ListModel[];
+};
+
 export type ListsEditorProps = {
   lists: ListModel[];
   activeListId: string;
@@ -77,9 +80,9 @@ export type ListsEditorProps = {
 
 export type Segment = { id: string; label: string };
 
-export type WheelProps = {
-  segments: Segment[];
-  rotationDeg?: number;
-  highlightedIds?: string[];
-  size?: number;
+export type DiscreteSliderProps<T extends number> = {
+  label: string;
+  values: readonly T[];
+  value: T;
+  onChange: (next: T) => void;
 };
