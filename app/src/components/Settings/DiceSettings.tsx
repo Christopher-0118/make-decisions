@@ -1,17 +1,28 @@
-import { useState } from 'react';
 import DiscreteSlider from '@/components/DiscreteSlider/DiscreteSlider';
-
-const SIDES = [4, 6, 8, 10, 12, 20, 100] as const;
-const COUNTS = [1, 2, 3, 4, 5] as const;
+import { SIDES, COUNTS } from '../type';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { setCount, setDice } from '@/store/diceSettingsSlice';
 
 const DiceSettings = () => {
-  const [sides, setSides] = useState<(typeof SIDES)[number]>(6);
-  const [count, setCount] = useState<(typeof COUNTS)[number]>(1);
+  const dispatch = useAppDispatch();
+  const die = useAppSelector((state) => state.diceSettings.dice);
+  const count = useAppSelector((state) => state.diceSettings.count);
 
   return (
     <>
-      <DiscreteSlider label="Side count:" values={SIDES} value={sides} onChange={setSides} />
-      <DiscreteSlider label="Dice count:" values={COUNTS} value={count} onChange={setCount} />
+      <DiscreteSlider
+        label="Side count:"
+        values={SIDES}
+        value={die}
+        onChange={(next) => dispatch(setDice(next))}
+      />
+      <DiscreteSlider
+        label="Dice count:"
+        values={COUNTS}
+        value={count}
+        onChange={(next) => dispatch(setCount(next))}
+      />
     </>
   );
 };

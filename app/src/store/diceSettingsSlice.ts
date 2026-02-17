@@ -1,26 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 type die = 4 | 6 | 8 | 10 | 12 | 20 | 100;
+type diceCount = 1 | 2 | 3 | 4 | 5;
 
-type DiceSettingState = {
+type DiceSettingsState = {
   dice: die;
-  count: 1 | 2 | 3 | 4 | 5;
+  count: diceCount;
 };
 
-const initialState: DiceSettingState = {
+const initialState: DiceSettingsState = {
   dice: 6,
   count: 3,
 };
 
-const diceSlice = createSlice({
-  name: 'dice',
+const diceSettingsSlice = createSlice({
+  name: 'diceSettings',
   initialState,
   reducers: {
-    // roll(state, action: PayloadAction<number>) {
-    //   state.lastRoll = action.payload;
-    // },
+    setDice: (state, action: PayloadAction<die>) => {
+      state.dice = action.payload;
+    },
+    setCount: (state, action: PayloadAction<diceCount>) => {
+      state.count = action.payload;
+    },
   },
 });
 
-//export const { roll } = diceSlice.actions;
-export const diceReducer = diceSlice.reducer;
+export const { setDice, setCount } = diceSettingsSlice.actions;
+export default diceSettingsSlice.reducer;

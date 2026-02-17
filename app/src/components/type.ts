@@ -11,6 +11,8 @@ export const FULL_TURNS = 3;
 export const FULL_FLIP = 360 * FULL_TURNS;
 export const HALF_FLIP = 180;
 export const SIDE = 1;
+export const SIDES = [4, 6, 8, 10, 12, 20, 100] as const;
+export const COUNTS = [1, 2, 3, 4, 5] as const;
 
 export type CoinSide = 'heads' | 'tails';
 

@@ -3,7 +3,7 @@ import wheelSettingsSlice from './wheelSettingsSlice';
 import wheelHistorySlice from './wheelHistorySlice';
 import wheelListsSlice from './wheelListsSlice';
 import coinHistorySlice from './coinHistorySlice';
-import { diceReducer } from './diceSettingsSlice';
+import diceSettingsSlice from './diceSettingsSlice';
 import { loadListsFromStorage, saveListsToStorage } from '@/components/Wheel/listStorage';
 import { PRESET_LISTS } from '@/components/Wheel/presets';
 
@@ -16,7 +16,7 @@ export const store = configureStore({
     wheelSettings: wheelSettingsSlice,
     wheelLists: wheelListsSlice,
     coinHistory: coinHistorySlice,
-    dice: diceReducer,
+    diceSettings: diceSettingsSlice,
   },
   preloadedState: {
     wheelLists: {
