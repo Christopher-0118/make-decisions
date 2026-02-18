@@ -4,14 +4,21 @@ import DiceSettings from '@/components/Settings/DiceSettings';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { addEntry, clearAllEntries } from '@/store/diceHistorySlice';
+import { lazy, Suspense } from 'react';
 
 const DiceRoute = () => {
+  const dispatch = useAppDispatch();
+  const history = useAppSelector((state) => state.diceHistory.entries);
   const die = useAppSelector((state) => state.diceSettings.dice);
   const count = useAppSelector((state) => state.diceSettings.count);
   const values = Array.from({ length: die }, (_, i) => i + 1);
   const { result, generate } = useRandomizer({ seed: SEED, values: values, unique: false });
+  const History = lazy(() => import('@/components/History/History'));
   const roll = () => {
-    generate(count);
+    const generatedResults = generate(count);
+    dispatch(addEntry(generatedResults));
   };
 
   return (
@@ -33,7 +40,11 @@ const DiceRoute = () => {
       <BottomSheet>
         <Tabs
           settingsContent={<DiceSettings />}
-          historyContent={<div>History will be displayed here.</div>}
+          historyContent={
+            <Suspense fallback={<div>Loading...</div>}>
+              <History entries={history} onClear={() => dispatch(clearAllEntries())} />
+            </Suspense>
+          }
           defaultTab="settings"
         />
       </BottomSheet>

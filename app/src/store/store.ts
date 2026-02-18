@@ -4,6 +4,7 @@ import wheelHistorySlice from './wheelHistorySlice';
 import wheelListsSlice from './wheelListsSlice';
 import coinHistorySlice from './coinHistorySlice';
 import diceSettingsSlice from './diceSettingsSlice';
+import diceHistorySlice from './diceHistorySlice';
 import { loadListsFromStorage, saveListsToStorage } from '@/components/Wheel/listStorage';
 import { PRESET_LISTS } from '@/components/Wheel/presets';
 
@@ -17,6 +18,7 @@ export const store = configureStore({
     wheelLists: wheelListsSlice,
     coinHistory: coinHistorySlice,
     diceSettings: diceSettingsSlice,
+    diceHistory: diceHistorySlice,
   },
   preloadedState: {
     wheelLists: {

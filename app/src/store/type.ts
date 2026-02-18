@@ -5,7 +5,8 @@ import type { CoinSide } from '@/components/type';
 export type HistoryResults = {
   id: number;
   time: string;
-  results: string[] | CoinSide;
+  results: string[] | CoinSide | number[];
+  resultsSum?: number;
 };
 
 export type HistoryState = {

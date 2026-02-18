@@ -15,6 +15,7 @@ const History = ({ entries, onClear }: HistoryProps) => {
         <label className="result" key={index}>
           <label>{item.time}</label>
           <label>{Array.isArray(item.results) ? item.results.join(', ') : item.results}</label>
+          {item.resultsSum ? <label>{item.resultsSum}</label> : ''}
         </label>
       ))}
     </div>
