@@ -1,12 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-
-type die = 4 | 6 | 8 | 10 | 12 | 20 | 100;
-type diceCount = 1 | 2 | 3 | 4 | 5;
-
-type DiceSettingsState = {
-  dice: die;
-  count: diceCount;
-};
+import type { DiceSettingsState, die, diceCount } from './type';
 
 const initialState: DiceSettingsState = {
   dice: 6,

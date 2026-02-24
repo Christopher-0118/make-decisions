@@ -15,8 +15,7 @@
   position: relative;
   height: 76px;
   max-width: 350px;
-  width: 100%;
-  max-width: 350px;
+  width: 95%;
   justify-self: start;
   align-items: center;
 }
@@ -86,7 +85,8 @@
   background: #7b4cff;
   border: 3px solid #5b3ad6;
   color: #fff;
-  font-weight: 700;
+  font-size: 0.6rem;
+  font-weight: 900;
   display: flex;
   justify-content: center;
   align-items: center;

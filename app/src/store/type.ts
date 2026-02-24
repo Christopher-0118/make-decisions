@@ -17,3 +17,11 @@ export type wheelSettingsState = {
   count: number;
   activeList: string;
 };
+
+export type die = 4 | 6 | 8 | 10 | 12 | 20;
+export type diceCount = 1 | 2 | 3 | 4 | 5;
+
+export type DiceSettingsState = {
+  dice: die;
+  count: diceCount;
+};
