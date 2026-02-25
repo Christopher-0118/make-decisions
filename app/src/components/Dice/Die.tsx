@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { SPRITES } from './sprites';
-import './die.css';
 import { DEFAULT_DELAY, DEFAULT_SIZE_PX, DELAYS, type DieProps } from '../type';
 
 const Die = ({ faces, value, isRolling, onRollEnd, sizePx = DEFAULT_SIZE_PX }: DieProps) => {
