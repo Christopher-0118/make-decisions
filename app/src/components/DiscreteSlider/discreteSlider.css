@@ -1,0 +1,111 @@
+.discrete-slider {
+  display: grid;
+  grid-template-columns: 90px auto;
+  align-items: center;
+  gap: 15px;
+}
+
+.label {
+  font-size: inherit;
+  font-weight: 700;
+  align-self: start;
+}
+
+.slider-wrapper {
+  position: relative;
+  height: 76px;
+  max-width: 350px;
+  width: 95%;
+  justify-self: start;
+  align-items: center;
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #b3abab;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  width: 0%;
+  background: #7b4cff;
+  opacity: 0.55;
+}
+
+.marks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 4px solid #5b3ad6;
+  background: #ffffff;
+  padding: 0;
+  cursor: pointer;
+}
+
+.mark__active {
+  background: #7b4cff;
+}
+
+.mark__inactive {
+  background: #ffffff;
+  border-color: #6b6b6b;
+}
+
+.mark__current {
+  box-shadow: 0 0 0 6px rgba(123, 76, 255, 0.25);
+}
+
+.badge {
+  position: absolute;
+  top: 27px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.badge-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #7b4cff;
+  border: 3px solid #5b3ad6;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-pointer {
+  width: 0;
+  height: 0;
+  margin: -2px auto;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #5b3ad6;
+}
+
+.native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}

@@ -2,8 +2,7 @@ import type { HistoryProps } from '../type';
 import { Trash2 } from 'lucide-react';
 import './history.css';
 
-const History = ({entries, onClear}: HistoryProps) => {
-
+const History = ({ entries, onClear }: HistoryProps) => {
   return (
     <div className="results-table">
       <div className="table-header">
@@ -16,6 +15,7 @@ const History = ({entries, onClear}: HistoryProps) => {
         <label className="result" key={index}>
           <label>{item.time}</label>
           <label>{Array.isArray(item.results) ? item.results.join(', ') : item.results}</label>
+          {item.resultsSum ? <label>{item.resultsSum}</label> : ''}
         </label>
       ))}
     </div>
