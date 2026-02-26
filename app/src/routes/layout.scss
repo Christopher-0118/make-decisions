@@ -1,0 +1,172 @@
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f7;
+}
+
+.app-main {
+  flex: 1;
+  padding-bottom: calc(110px + env(safe-area-inset-bottom));
+}
+
+.app-nav {
+  --active-index: 0;
+  --nav-h: 46px;
+  --nav-radius: 25px;
+  --pad: 3px;
+  --glass-bg:rgba(255, 255, 255, 0.12);
+  --glass-blur: 24px;
+  --pill-bg: rgba(255, 255, 255, 0.42);
+  --pill-bg: radial-gradient(
+    circle at 50% 0%,
+    rgba(255,255,255,0.4),
+    transparent 70%
+  );
+  --pill-border: rgba(255, 255, 255, 0.28);
+  --pill-shadow: 0 10px 26px rgba(0, 0, 0, 0.10);
+  --icon: rgba(0, 0, 0, 0.75);
+  --icon-active: rgba(0, 0, 0, 0.95);
+
+  position: fixed;
+  align-self: center;
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  width: min(520px, calc(100% - 28px));
+  height: var(--nav-h);
+  padding: var(--pad);
+  display: flex;
+  align-items: center;
+  border-radius: var(--nav-radius);
+
+  /*
+  border: 1px solid rgba(255,255,255,.46);
+  box-shadow:
+    2px 0px 0px 0px rgba(255, 255, 255, 1.18),
+    -2px 0px 0px 0px rgba(255, 255, 255, 1.18);
+  */
+  box-shadow:
+    0.5px 1px 0px 0px rgba(255, 255, 255, 1.18),
+    -0.5px -1px 0px 0px rgba(255, 255, 255, 1.18);
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+
+  overflow: hidden;
+  z-index: 1000;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, 0.05)
+    );
+    opacity: 0.6;
+  }
+
+  &::after {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: var(--pad);
+    bottom: var(--pad);
+    left: var(--pad);
+    width: calc((100% - (var(--pad) * 2)) / 3);
+
+    border-radius: var(--nav-radius);
+    border-radius: 25px;
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      var(--pill-shadow);
+
+    transform: translateX(calc(var(--active-index) * 100%));
+    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    pointer-events: none;
+  }
+}
+
+.app-nav[data-active-index='0'] {
+  --active-index: 0;
+}
+.app-nav[data-active-index='1'] {
+  --active-index: 1;
+}
+.app-nav[data-active-index='2'] {
+  --active-index: 2;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .app-nav {
+    background: rgba(245, 245, 245, 0.92);
+  }
+}
+
+.app-nav-link {
+  flex: 1;
+  height: 100%;
+  border-radius: var(--nav-radius);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0;
+  color: var(--icon);
+  transition: transform 180ms ease, color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--active {
+    color: var(--icon-active);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  &:first-child svg {
+    transform: rotate(180deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-root {
+    background: #000;
+  }
+
+  .app-nav {
+    --glass-bg: rgba(30, 30, 30, 0.58);
+
+    --pill-bg: rgba(255, 255, 255, 0.12);
+    --pill-border: rgba(255, 255, 255, 0.10);
+    --pill-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+
+    --icon: rgba(255, 255, 255, 0.75);
+    --icon-active: rgba(255, 255, 255, 0.95);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    &::before {
+      opacity: 0.25;
+    }
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .app-nav {
+      background: rgba(30, 30, 30, 0.92);
+    }
+  }
+}
