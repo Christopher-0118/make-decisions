@@ -1,0 +1,45 @@
+@use './_tokens.scss' as tokens;
+
+// Generic glass surface: background + blur + saturate + fallback
+@mixin glass-surface($bg-var, $fallback-var) {
+  background: $bg-var;
+  backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate-strong));
+  -webkit-backdrop-filter: blur(var(--glass-blur-strong)) saturate(var(--glass-saturate-strong));
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background: $fallback-var;
+  }
+}
+
+@mixin glass-border() {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+@mixin glass-inner-highlight($opacity: 0.6) {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.05));
+    opacity: $opacity;
+  }
+}
+
+// Shadow helper, keeps existing shadow tokens in one place
+@mixin glass-shadow($shadow-token) {
+  box-shadow: $shadow-token;
+}
+
+@mixin icon-button($size: 20px, $font-size: 15px) {
+  width: $size;
+  height: $size;
+
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  font-size: $font-size;
+  line-height: 1;
+  cursor: pointer;
+}

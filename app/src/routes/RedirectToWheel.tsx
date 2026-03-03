@@ -1,7 +1,7 @@
-import { Navigate } from "react-router"
+import { Navigate } from 'react-router';
 
 const RedirectToWheel = () => {
-  return <Navigate to="/wheel" replace/>
+  return <Navigate to="/wheel" replace />;
 };
 
 export default RedirectToWheel;

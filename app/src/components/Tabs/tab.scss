@@ -1,0 +1,31 @@
+@use '../../shared/styles/_mixins.scss' as mixins;
+
+.tab {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  border-radius: var(--radius-pill);
+  padding: var(--space-pad-s) var(--space-pad-m);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--icon-color);
+  background-color: transparent;
+  transition:
+    color var(--duration-fast) ease,
+    background-color var(--duration-fast) ease;
+}
+
+.tab[aria-selected='true'] {
+  color: var(--color-active-element);
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

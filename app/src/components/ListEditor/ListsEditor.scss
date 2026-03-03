@@ -1,3 +1,7 @@
+@use '@/shared/styles/_mixins.scss';
+@use '@/shared/styles/_tokens.scss';
+@use '@/shared/styles/_globals.scss';
+
 .block {
   display: flex;
   flex-direction: column;
@@ -14,74 +18,55 @@
 }
 
 .addBtn {
-  margin-right: 8px;
+  margin-right: 13px;
   padding: 0;
-  height: 20px;
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  font-size: 15px;
-  line-height: 1;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.08);
-  cursor: pointer;
+  border-radius: var(--radius-pill);
+  @include mixins.icon-button(20px, 15px);
+  @include mixins.glass-surface(var(--bg-glass-light), var(--bg-glass-dark));
+  @include mixins.glass-inner-highlight(0.6);
+  overflow: hidden;
 }
 
 .lists {
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  row-gap: 3px;
 }
 
-.listCard {
-  border-radius: 14px;
+.listCard{
+  border-radius: 8px;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-shadow(var(--shadow-nav-edge));
+  @include mixins.glass-inner-highlight(0.6);
   overflow: hidden;
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr 48px;
-  align-items: stretch;
-  border-radius: 14px;
-  border: 2px solid rgba(0, 0, 0, 0.375);
-  transition: border-color 550ms ease;
 }
 
-.rowActive {
-  border: 2px solid rgba(76, 175, 80, 0.35);
-}
-
-.rowMain {
-  padding: 12px 12px;
-  border: 0;
-  background: transparent;
+.row-main {
+  padding: var(--space-pad-m);
+  border-radius: 0;
   text-align: left;
   cursor: pointer;
-}
-
-.rowTitle {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-weight: 700;
-}
-
-.rowMeta {
-  margin-top: 4px;
-  font-size: 12px;
-  opacity: 0.7;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-inner-highlight(0.6);
+  &--active {
+    color: tokens.$color-active-element-light;
+  }
 }
 
 .rowToggle {
   border: 0;
   font-size: 0;
-
-  background: transparent;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 0;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-inner-highlight(0.6);
 }
 
 .addRow {
@@ -92,21 +77,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
   transition: transform 180ms ease;
+  transform: rotate(180deg);
+  background-color: transparent;
+  @include mixins.icon-button(auto, 15)
 }
 
 .chevronOpen {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 .editor {
-  padding: 12px 12px 0 12px;
+  padding: 10px 10px 0 10px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--glass-surface);
   border-top: none;
   border-radius: 0 0 14px 14px;
 }
@@ -138,8 +124,8 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   padding: 0 12px;
-  background: #fff;
   font-size: 14px;
+  background-color: transparent;
 }
 
 .input:last-of-type {

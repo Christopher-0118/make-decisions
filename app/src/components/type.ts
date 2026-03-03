@@ -3,7 +3,7 @@ import type { die, HistoryResults } from '@/store/type';
 // components
 export const RADIUS = 50;
 export const CENTER = 50;
-export const PEEK = 20;
+export const PEEK = 10;
 export const CLOSE_RATIO = 0.3;
 export const OPEN_RATIO = 0.15;
 export const FLICK_VELOCITY = 800;

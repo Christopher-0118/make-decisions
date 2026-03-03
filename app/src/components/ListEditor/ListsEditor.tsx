@@ -1,7 +1,7 @@
-import styles from './ListsEditor.module.css';
 import { ChevronUp, Trash2Icon } from 'lucide-react';
 import type { ListsEditorProps } from '../type';
 import { useRef, useState } from 'react';
+import './ListsEditor.scss';
 
 const ListsEditor = ({
   lists,
@@ -36,72 +36,72 @@ const ListsEditor = ({
   };
 
   return (
-    <section className={styles.block}>
-      <div className={styles.blockTitle}>
+    <section className="block">
+      <div className="blockTitle">
         <div>Lists:</div>
-        <button type="button" aria-label="Add a list" className={styles.addBtn} onClick={onAddList}>
+        <button type="button" aria-label="Add a list" className="addBtn" onClick={onAddList}>
           +
         </button>
       </div>
 
-      <div className={styles.lists}>
+      <div className="lists">
         {lists.map((list) => {
           const isActive = list.id === activeListId;
           const isExpanded = list.id === expandedListId;
 
           return (
-            <div key={list.id} className={styles.listCard}>
-              <div className={`${styles.row} ${isActive ? styles.rowActive : ''}`}>
+            <div key={list.id} className="listCard">
+              <div className="row">
                 <button
                   type="button"
                   aria-label="Choose the list"
-                  className={styles.rowMain}
+                  className={`row-main ${isActive ? 'row-main--active' : ''}`}
                   onClick={() => onSelectActive(list.id)}
                 >
-                  <div className={styles.rowTitle}>{list.name}</div>
+                  {list.name}
                 </button>
                 <button
                   type="button"
-                  className={styles.rowToggle}
+                  className="rowToggle"
                   onClick={() => onToggleExpanded(list.id)}
                   aria-label={isExpanded ? 'Collapse' : 'Edit'}
                 >
                   <ChevronUp
-                    className={`${styles.chevron} ${isExpanded ? styles.chevronOpen : ''}`}
+                    className={`chevron ${isExpanded ? 'chevronOpen' : ''}`}
                   />
                 </button>
               </div>
 
               {isExpanded ? (
-                <div className={styles.editor}>
-                  <div className={styles.editorLine}>
-                    <div className={styles.editorTitle}>
-                      <label className={styles.label}>Name</label>
+                <div className="editor">
+                  <div className="editorLine">
+                    <div className="editorTitle">
+                      <label className="label">Name</label>
                       <button
                         type="button"
                         className="iconTrash"
                         onClick={() => onDeleteList(list.id)}
                         aria-label="Delete the list"
                       >
-                        <Trash2Icon size={15} color="#213547" />
+                        <Trash2Icon/>
                       </button>
                     </div>
                     <input
-                      className={styles.input}
+                      className="input"
                       value={list.name}
                       onChange={(e) => onChangeListName(list.id, e.target.value)}
                       placeholder="List name"
                     />
                   </div>
 
-                  <div className={styles.editorLine}>
-                    <div className={styles.label}>Items</div>
+                  <div className="editorLine">
+                    <div className="label">Items</div>
 
-                    <div className={styles.items}>
+                    <div className="items">
                       {list.items.map((it, idx) => (
                         <input
                           key={`${list.id}-${idx}`}
-                          className={styles.input}
+                          className="input"
                           value={it}
                           onChange={(e) => onChangeItem(list.id, idx, e.target.value)}
                           onBlur={() => onBlurItem(list.id, idx)}
@@ -109,7 +109,7 @@ const ListsEditor = ({
                         />
                       ))}
                       <input
-                        className={styles.input}
+                        className="input"
                         placeholder="Add an item…"
                         value={draftByListId[list.id] ?? ''}
                         ref={(el) => {

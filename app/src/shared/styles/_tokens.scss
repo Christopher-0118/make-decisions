@@ -1,0 +1,78 @@
+// Design tokens: colors, radii, spacing, shadows, motion
+
+// App background
+$bg-app-light: #f2f2f7;
+$bg-app-dark: #000000;
+
+// Glass surfaces
+$glass-surface-light: rgba(255, 255, 255, 0.16);
+$glass-surface-light-fallback: rgba(245, 245, 245, 0.92);
+$glass-surface-dark: rgba(30, 30, 30, 0.6);
+$glass-surface-dark-fallback: rgba(30, 30, 30, 0.92);
+
+// Base / active colors
+$icon-color-light: rgba(0, 0, 0, 0.78);
+$color-active-element-light: #747bff;
+$icon-color-dark: rgba(255, 255, 255, 0.78);
+$color-active-element-dark: rgba(255, 255, 255, 0.96);
+
+// Radii
+$radius-nav: 25px;
+$radius-nav-pill: 25px;
+$radius-sheet: 26px;
+$radius-pill: 999px;
+
+// Spacing
+$space-pad-xs: 3px;
+$space-pad-s: 6px;
+$space-pad-m: 10px;
+$space-pad-l: 16px;
+
+// Shadows
+$shadow-nav-edge:
+  0.5px 1px 0px 0px rgba(255, 255, 255, 1.18),
+  -0.5px -1px 0px 0px rgba(255, 255, 255, 1.18);
+$shadow-nav-pill: 0 10px 26px rgba(0, 0, 0, 0.1);
+$shadow-sheet: 0 -5px 10px rgba(0, 0, 0, 0.08);
+
+// Blur / saturation
+$glass-blur-strong: 24px;
+$glass-saturate-strong: 1.8;
+
+// Motion
+$duration-fast: 0.18s;
+$duration-medium: 0.24s;
+$easing-snap: cubic-bezier(0.22, 1, 0.36, 1);
+
+// Expose as CSS variables for runtime theming
+:root {
+  --bg-app: #{$bg-app-light};
+
+  --glass-surface: #{$glass-surface-light};
+  --glass-surface-fallback: #{$glass-surface-light-fallback};
+
+  --icon-color: #{$icon-color-light};
+  --color-active-element: #{$color-active-element-light};
+  --icon-color-active: var(--color-active-element);
+
+  --radius-nav: #{$radius-nav};
+  --radius-nav-pill: #{$radius-nav-pill};
+  --radius-sheet: #{$radius-sheet};
+  --radius-pill: #{$radius-pill};
+
+  --space-pad-xs: #{$space-pad-xs};
+  --space-pad-s: #{$space-pad-s};
+  --space-pad-m: #{$space-pad-m};
+  --space-pad-l: #{$space-pad-l};
+
+  --shadow-nav-edge: #{$shadow-nav-edge};
+  --shadow-nav-pill: #{$shadow-nav-pill};
+  --shadow-sheet: #{$shadow-sheet};
+
+  --glass-blur-strong: #{$glass-blur-strong};
+  --glass-saturate-strong: #{$glass-saturate-strong};
+
+  --duration-fast: #{$duration-fast};
+  --duration-medium: #{$duration-medium};
+  --easing-snap: #{$easing-snap};
+}

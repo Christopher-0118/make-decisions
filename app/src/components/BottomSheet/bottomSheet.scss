@@ -1,3 +1,5 @@
+@use '../../shared/styles/_mixins.scss' as mixins;
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -13,30 +15,29 @@
   bottom: 0;
   z-index: 50;
   height: 70dvh;
-
-  background: #ffffff;
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.08);
-
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
   display: flex;
   flex-direction: column;
-
   touch-action: none;
+
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-shadow(var(--shadow-sheet));
 }
 
 .handleButton {
+  padding: 4px 0;
   border: none;
-  background: transparent;
-  padding: 8px 14px;
+  box-shadow: none;
   cursor: pointer;
-  text-align: left;
+  background: transparent;
 }
 
 .grabber {
   width: 44px;
-  height: 5px;
-  border-radius: 999px;
+  height: 3px;
+  border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, 0.18);
-  margin: 0 auto 10px;
+  margin: 0 auto;
 }
 
 .headerRow {
@@ -59,7 +60,6 @@
   height: 28px;
   align-items: center;
   justify-content: center;
-  /* border-radius: 999px; */
   background: rgba(0, 0, 0, 0.06);
   font-size: 18px;
   line-height: 1;
