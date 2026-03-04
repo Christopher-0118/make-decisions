@@ -4,6 +4,11 @@
 $bg-app-light: #f2f2f7;
 $bg-app-dark: #000000;
 
+// Text colors
+$color-white: #fff;
+$color-black: #000;
+$color-coin-label: rgba(114, 76, 23, 0.911);
+
 // Glass surfaces
 $glass-surface-light: rgba(255, 255, 255, 0.16);
 $glass-surface-light-fallback: rgba(245, 245, 245, 0.92);
@@ -27,6 +32,38 @@ $space-pad-xs: 3px;
 $space-pad-s: 6px;
 $space-pad-m: 10px;
 $space-pad-l: 16px;
+
+// Gap (spacing between elements)
+$gap-xs: 2px;
+$gap-sm: 3px;
+$gap-md: 6px;
+$gap-lg: 10px;
+$gap-xl: 12px;
+
+// Font sizes
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 15px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+
+// Font weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Opacity
+$opacity-subtle: 0.06;
+$opacity-faint: 0.12;
+$opacity-light: 0.18;
+$opacity-medium: 0.35;
+$opacity-strong: 0.4;
+$opacity-prominent: 0.6;
+$opacity-semiopaque: 0.75;
+$opacity-bright: 0.78;
+$opacity-near-opaque: 0.85;
+$opacity-almost-opaque: 0.96;
 
 // Shadows
 $shadow-nav-edge:
@@ -55,6 +92,10 @@ $easing-snap: cubic-bezier(0.22, 1, 0.36, 1);
   --color-active-element: #{$color-active-element-light};
   --icon-color-active: var(--color-active-element);
 
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+  --color-coin-label: #{$color-coin-label};
+
   --radius-nav: #{$radius-nav};
   --radius-nav-pill: #{$radius-nav-pill};
   --radius-sheet: #{$radius-sheet};
@@ -64,6 +105,34 @@ $easing-snap: cubic-bezier(0.22, 1, 0.36, 1);
   --space-pad-s: #{$space-pad-s};
   --space-pad-m: #{$space-pad-m};
   --space-pad-l: #{$space-pad-l};
+
+  --gap-xs: #{$gap-xs};
+  --gap-sm: #{$gap-sm};
+  --gap-md: #{$gap-md};
+  --gap-lg: #{$gap-lg};
+  --gap-xl: #{$gap-xl};
+
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-md: #{$font-size-md};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  --opacity-subtle: #{$opacity-subtle};
+  --opacity-faint: #{$opacity-faint};
+  --opacity-light: #{$opacity-light};
+  --opacity-medium: #{$opacity-medium};
+  --opacity-strong: #{$opacity-strong};
+  --opacity-prominent: #{$opacity-prominent};
+  --opacity-semiopaque: #{$opacity-semiopaque};
+  --opacity-bright: #{$opacity-bright};
+  --opacity-near-opaque: #{$opacity-near-opaque};
+  --opacity-almost-opaque: #{$opacity-almost-opaque};
 
   --shadow-nav-edge: #{$shadow-nav-edge};
   --shadow-nav-pill: #{$shadow-nav-pill};

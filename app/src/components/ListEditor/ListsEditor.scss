@@ -12,9 +12,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
-  font-weight: 700;
-  opacity: 0.85;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  opacity: var(--opacity-near-opaque);
 }
 
 .addBtn {
@@ -22,22 +22,22 @@
   padding: 0;
   border-radius: var(--radius-pill);
   @include mixins.icon-button(20px, 15px);
-  @include mixins.glass-surface(var(--bg-glass-light), var(--bg-glass-dark));
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   @include mixins.glass-inner-highlight(0.6);
+
   overflow: hidden;
 }
 
 .lists {
   display: flex;
   flex-direction: column;
-  row-gap: 3px;
+  row-gap: var(--gap-sm);
 }
 
-.listCard{
+.listCard {
+  background-color: transparent;
   border-radius: 8px;
-  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   @include mixins.glass-shadow(var(--shadow-nav-edge));
-  @include mixins.glass-inner-highlight(0.6);
   overflow: hidden;
 }
 
@@ -80,7 +80,7 @@
   transition: transform 180ms ease;
   transform: rotate(180deg);
   background-color: transparent;
-  @include mixins.icon-button(auto, 15)
+  @include mixins.icon-button(auto, 15);
 }
 
 .chevronOpen {
@@ -109,9 +109,9 @@
 }
 
 .label {
-  font-size: 12px;
-  font-weight: 700;
-  opacity: 0.75;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  opacity: var(--opacity-semiopaque);
 }
 
 .items {
@@ -122,9 +122,9 @@
 .input {
   height: 30px;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, var(--opacity-faint));
   padding: 0 12px;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   background-color: transparent;
 }
 

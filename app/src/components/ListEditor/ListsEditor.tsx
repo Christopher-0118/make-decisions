@@ -66,9 +66,7 @@ const ListsEditor = ({
                   onClick={() => onToggleExpanded(list.id)}
                   aria-label={isExpanded ? 'Collapse' : 'Edit'}
                 >
-                  <ChevronUp
-                    className={`chevron ${isExpanded ? 'chevronOpen' : ''}`}
-                  />
+                  <ChevronUp className={`chevron ${isExpanded ? 'chevronOpen' : ''}`} />
                 </button>
               </div>
 
@@ -83,7 +81,7 @@ const ListsEditor = ({
                         onClick={() => onDeleteList(list.id)}
                         aria-label="Delete the list"
                       >
-                        <Trash2Icon/>
+                        <Trash2Icon />
                       </button>
                     </div>
                     <input

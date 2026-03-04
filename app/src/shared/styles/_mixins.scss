@@ -15,13 +15,17 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-@mixin glass-inner-highlight($opacity: 0.6) {
+@mixin glass-inner-highlight($opacity: var(--opacity-prominent)) {
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.05));
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.35),
+      rgba(255, 255, 255, var(--opacity-light))
+    );
     opacity: $opacity;
   }
 }

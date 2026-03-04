@@ -1,13 +1,17 @@
+@use '@/shared/styles/_mixins.scss';
+@use '@/shared/styles/_tokens.scss';
+@use '@/shared/styles/_globals.scss';
+
 .discrete-slider {
   display: grid;
-  grid-template-columns: 90px auto;
+  grid-template-columns: 90px auto; // left column is fixed width
   align-items: center;
   gap: 15px;
 }
 
 .label {
   font-size: inherit;
-  font-weight: 700;
+  font-weight: tokens.$font-weight-bold;
   align-self: start;
 }
 
@@ -24,51 +28,46 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: #b3abab;
+  top: tokens.$gap-xl; // 12px from tokens
+  height: 5px; // no matching token for 5px track height
+  border-radius: tokens.$radius-pill;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   overflow: hidden;
 }
 
 .fill {
   height: 100%;
-  width: 0%;
-  background: #7b4cff;
-  opacity: 0.55;
+  background: tokens.$color-active-element-light; // use active element color token
+  opacity: tokens.$opacity-prominent; // closest match to original 0.55
 }
 
 .marks {
   position: absolute;
   left: 0;
   right: 0;
-  top: 5px;
+  top: 10px;
   display: flex;
   justify-content: space-between;
   pointer-events: auto;
 }
 
 .mark {
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  border: 4px solid #5b3ad6;
-  background: #ffffff;
+  border-radius: tokens.$radius-pill;
   padding: 0;
-  cursor: pointer;
+  @include mixins.icon-button(tokens.$gap-lg, tokens.$font-size-md);
 }
 
 .mark__active {
-  background: #7b4cff;
+  background: tokens.$color-active-element-light;
 }
 
 .mark__inactive {
-  background: #ffffff;
-  border-color: #6b6b6b;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-inner-highlight(tokens.$opacity-prominent);
 }
 
 .mark__current {
-  box-shadow: 0 0 0 6px rgba(123, 76, 255, 0.25);
+  box-shadow: 0 0 0 5px rgba(123, 76, 255, 0.25);
 }
 
 .badge {
@@ -81,10 +80,10 @@
 .badge-box {
   width: 20px;
   height: 20px;
-  border-radius: 10px;
-  background: #7b4cff;
-  border: 3px solid #5b3ad6;
-  color: #fff;
+  border-radius: tokens.$gap-lg;
+  background: tokens.$color-active-element-light;
+  border: tokens.$gap-sm solid #5b3ad6;
+  color: var(--color-white);
   font-size: 0.6rem;
   font-weight: 900;
   display: flex;

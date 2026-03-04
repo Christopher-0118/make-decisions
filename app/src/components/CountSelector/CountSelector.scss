@@ -7,13 +7,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: var(--gap-lg);
 }
 
 .blockTitle {
-  font-size: 14px;
-  font-weight: 700;
-  opacity: 0.85;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  opacity: var(--opacity-near-opaque);
 }
 
 .countRow {
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
+  gap: var(--gap-lg);
 }
 
 .countBtn {
@@ -35,10 +35,10 @@
 }
 
 .countBtn:disabled {
-  opacity: 0.4;
+  opacity: var(--opacity-strong);
   cursor: default;
 }
 
 .countValue {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }

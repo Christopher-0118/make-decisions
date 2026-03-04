@@ -74,10 +74,10 @@
 }
 
 .coin_label {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.2px;
-  color: rgba(114, 76, 23, 0.911);
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: tokens.$color-coin-label;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, var(--opacity-medium));
   transform: perspective(400px) rotateX(30deg);
 }
