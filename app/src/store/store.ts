@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import wheelSettingsSlice from './wheelSettingsSlice';
 import wheelHistorySlice from './wheelHistorySlice';
-import { diceReducer } from './diceSlice';
-import { coinReducer } from './coinSlice';
 import wheelListsSlice from './wheelListsSlice';
-import { loadListsFromStorage, saveListsToStorage } from '@/components/Wheel/listStorgae';
+import coinHistorySlice from './coinHistorySlice';
+import diceSettingsSlice from './diceSettingsSlice';
+import diceHistorySlice from './diceHistorySlice';
+import { loadListsFromStorage, saveListsToStorage } from '@/components/Wheel/listStorage';
 import { PRESET_LISTS } from '@/components/Wheel/presets';
 
 const loaded = loadListsFromStorage();
@@ -15,8 +16,9 @@ export const store = configureStore({
     wheelHistory: wheelHistorySlice,
     wheelSettings: wheelSettingsSlice,
     wheelLists: wheelListsSlice,
-    dice: diceReducer,
-    coin: coinReducer,
+    coinHistory: coinHistorySlice,
+    diceSettings: diceSettingsSlice,
+    diceHistory: diceHistorySlice,
   },
   preloadedState: {
     wheelLists: {

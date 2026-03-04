@@ -1,0 +1,87 @@
+@use '@/shared/styles/_mixins.scss';
+@use '@/shared/styles/_tokens.scss';
+@use '@/shared/styles/_globals.scss';
+
+.coin_stage {
+  display: grid;
+  place-items: center;
+  padding: #{tokens.$space-pad-l * 1.5} tokens.$space-pad-l;
+  perspective: 900px;
+}
+
+.coin_motion {
+  display: inline-block;
+}
+
+.coin {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: tokens.$radius-pill;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.coin-heads {
+}
+.coin-tails {
+}
+
+.coin_face {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  border-radius: tokens.$radius-pill;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+
+  background:
+    conic-gradient(#edc800, #e3b600, #fceabb, #fccd4d, #e3b600, #fceabb, #edc800),
+    radial-gradient(
+      circle at 50% 50%,
+      transparent 65%,
+      rgba(255, 255, 255, 0.2) 66%,
+      transparent 68%
+    );
+  box-shadow:
+    0 1px 0 #d4af37,
+    0 2px 0 #c29f2e,
+    0 3px 0 #b08f25,
+    0 4px 0 #9e7f1c,
+    0 5px 0 #8c6f13,
+    0 6px 1px rgba(0, 0, 0, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+
+  transform: translateZ(6px);
+}
+
+.coin_face::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 5px dashed rgba(0, 0, 0, 0.1);
+  border-radius: tokens.$radius-pill;
+}
+
+.coin_face__front {
+  transform: translateZ(6px) rotateX(0deg);
+}
+
+.coin_face__back {
+  transform: translateZ(7px) rotateX(180deg);
+}
+
+.coin_label {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.2px;
+  color: tokens.$color-coin-label;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, var(--opacity-medium));
+  transform: perspective(400px) rotateX(30deg);
+}

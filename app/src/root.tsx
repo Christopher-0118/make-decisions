@@ -1,7 +1,7 @@
 import { Outlet, ScrollRestoration, Scripts } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import './index.css';
+import './shared/styles/index.scss';
 
 export default function Root() {
   return (

@@ -1,28 +1,21 @@
-import { useAppSelector } from '@/hooks/useAppSelector';
+import type { HistoryProps } from '../type';
 import { Trash2 } from 'lucide-react';
 import './history.css';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { clearAllEntries } from '@/store/wheelHistorySlice';
 
-const History = () => {
-  const selectedHistory = useAppSelector((state) => state.wheelHistory.entries);
-  const dispatch = useAppDispatch();
-  const handlerClear = () => {
-    dispatch(clearAllEntries());
-  };
-
+const History = ({ entries, onClear }: HistoryProps) => {
   return (
     <div className="results-table">
       <div className="table-header">
         <strong>Results:</strong>
-        <button onClick={handlerClear} aria-label="Clear history" className="iconTrash">
+        <button onClick={onClear} aria-label="Clear history" className="iconTrash">
           <Trash2 size={20} />
         </button>
       </div>
-      {selectedHistory.map((item, index) => (
+      {entries.map((item, index) => (
         <label className="result" key={index}>
           <label>{item.time}</label>
-          <label>{item.results.join(', ')}</label>
+          <label>{Array.isArray(item.results) ? item.results.join(', ') : item.results}</label>
+          {item.resultsSum ? <label>{item.resultsSum}</label> : ''}
         </label>
       ))}
     </div>

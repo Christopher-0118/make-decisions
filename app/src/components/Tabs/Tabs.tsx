@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FLICK_VELOCITY, type TabsProps } from '../type';
-import './tabs.css';
+import './tabs.scss';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
 import Tab from './Tab';
 
@@ -34,14 +34,22 @@ const Tabs = ({
 
   return (
     <div className="root">
-      <nav className="nav" aria-label="Tabs">
+      <nav
+        className="nav"
+        aria-label="Tabs"
+        data-active-index={active === 'settings' ? 0 : 1}
+        data-tab-count={settingsContent ? 2 : 1}
+      >
         <ul className="list" role="tablist">
-          <Tab
-            id="settings"
-            label="Settings"
-            isActive={active === 'settings'}
-            onSelect={() => handleSelect('settings')}
-          />
+          {settingsContent ? (
+            <Tab
+              id="settings"
+              label="Settings"
+              isActive={active === 'settings'}
+              onSelect={() => handleSelect('settings')}
+            />
+          ) : null}
+
           <Tab
             id="history"
             label="History"
