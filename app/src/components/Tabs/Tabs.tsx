@@ -34,7 +34,12 @@ const Tabs = ({
 
   return (
     <div className="root">
-      <nav className="nav" aria-label="Tabs" data-active-index={active === 'settings' ? 0 : 1}>
+      <nav
+        className="nav"
+        aria-label="Tabs"
+        data-active-index={active === 'settings' ? 0 : 1}
+        data-tab-count={settingsContent ? 2 : 1}
+      >
         <ul className="list" role="tablist">
           {settingsContent ? (
             <Tab
