@@ -1,0 +1,90 @@
+@use '@/shared/styles/_tokens.scss' as tokens;
+
+.wheel {
+  width: tokens.$wheel-size;
+  height: tokens.$wheel-size;
+  border-radius: tokens.$radius-pill;
+  overflow: visible;
+}
+
+.wheel__base {
+  fill: tokens.$bg-app-light;
+}
+
+.wheel__slice-path {
+  stroke: tokens.$color-wheel-hub-fill;
+  stroke-width: tokens.$wheel-slice-stroke-width;
+  transition:
+    opacity tokens.$duration-medium ease,
+    filter tokens.$duration-medium ease;
+}
+
+.wheel__slice-path--primary {
+  fill: tokens.$color-wheel-primary-soft;
+}
+
+.wheel__slice-path--secondary-a {
+  fill: tokens.$color-wheel-secondary-a-soft;
+}
+
+.wheel__slice-path--secondary-b {
+  fill: tokens.$color-wheel-secondary-b-soft;
+}
+
+.wheel__slice-path--active {
+  animation: pulse-slice 0.5s ease-in-out 3;
+  filter: brightness(1.07);
+  transform-origin: 50px 50px;
+  transform-box: view-box;
+}
+
+.wheel__rim-shadow {
+  fill: none;
+  // stroke: tokens.$color-wheel-rim-shadow;
+  // stroke-width: 0.65;
+  transform: translate(0.65px, 0.6px);
+  transform-origin: 50px 50px;
+}
+
+.wheel__hub {
+  fill: tokens.$color-wheel-hub-fill;
+  // stroke: tokens.$color-wheel-hub-stroke;
+  // stroke-width: tokens.$wheel-hub-stroke-width;
+}
+
+.wheel__border {
+  fill: none;
+  
+  // stroke: tokens.$color-wheel-border;
+  // stroke-width: tokens.$wheel-border-width;
+}
+
+.wheel__rim-highlight {
+  fill: none;
+  stroke: tokens.$color-wheel-rim-highlight;
+  stroke-width: 0.6;
+  stroke-linecap: round;
+  stroke-dasharray: 18 320;
+  transform: rotate(86deg);
+  transform-origin: 50px 50px;
+}
+
+.wheel__label {
+  font-size: tokens.$wheel-label-size;
+  fill: tokens.$icon-color-light;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  user-select: none;
+}
+
+@keyframes pulse-slice {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(tokens.$wheel-pulse-scale);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

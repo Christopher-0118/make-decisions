@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { CENTER, RADIUS, type WheelProps } from '../type';
-import './Wheel.css';
+import './Wheel.scss';
+
+const HUB_RADIUS = 5;
 
 const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
   const highlighted = useMemo(() => new Set(highlightedIds), [highlightedIds]);
@@ -10,11 +12,24 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
 
     if (segmentsNumber === 0) return [];
 
-    const angle = (2 * Math.PI) / segmentsNumber;
+    const toneCycle =
+      segmentsNumber % 2 === 0
+        ? ['wheel__slice-path--primary', 'wheel__slice-path--secondary-a']
+        : ['wheel__slice-path--primary', 'wheel__slice-path--secondary-a', 'wheel__slice-path--secondary-b'];
+
     const polarToXY = (cx: number, cy: number, r: number, a: number) => ({
       x: cx + r * Math.cos(a),
       y: cy + r * Math.sin(a),
     });
+
+    const getToneClass = (idx: number) => {
+      if (toneCycle.length === 3 && segmentsNumber % 3 === 1 && idx === segmentsNumber - 1) {
+        return toneCycle[1];
+      }
+      return toneCycle[idx % toneCycle.length];
+    };
+
+    const angle = (2 * Math.PI) / segmentsNumber;
 
     return segments.map((seg, idx) => {
       const a0 = -Math.PI / 2 + idx * angle;
@@ -35,7 +50,7 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
       const textPos = polarToXY(CENTER, CENTER, RADIUS * 0.62, mid);
       const midDeg = (mid * 180) / Math.PI;
 
-      return { seg, d, textPos, midDeg, idx: idx };
+      return { seg, d, textPos, midDeg, toneClass: getToneClass(idx), key: seg.id };
     });
   }, [segments]);
 
@@ -46,15 +61,14 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
       animate={{ rotate: rotationDeg }}
       transition={{ duration: 1.2, ease: [0.17, 0.67, 0.12, 1] }}
     >
+      <circle className="wheel__base" cx={CENTER} cy={CENTER} r={RADIUS} />
       {slices.map((s) => {
         const isOn = highlighted.has(s.seg.id);
+        const state = isOn ? 'wheel__slice-path wheel__slice-path--active' : 'wheel__slice-path';
 
         return (
-          <g key={s.seg.id} className="wheel__slice">
-            <path
-              d={s.d}
-              className={isOn ? 'wheel__slice-path wheel__slice-path--active' : 'wheel__slice-path'}
-            />
+          <g key={s.key} className="wheel__slice">
+            <path d={s.d} className={`${state} ${s.toneClass}`} />
             <text
               className="wheel__label"
               x={s.textPos.x}
@@ -68,6 +82,10 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
           </g>
         );
       })}
+      <circle className="wheel__hub" cx={CENTER} cy={CENTER} r={HUB_RADIUS} />
+      <circle className="wheel__rim-shadow" cx={CENTER} cy={CENTER} r={RADIUS} />
+      <circle className="wheel__rim-highlight" cx={CENTER} cy={CENTER} r={RADIUS - 0.8} />
+      <circle className="wheel__border" cx={CENTER} cy={CENTER} r={RADIUS - 0.4} />
     </motion.svg>
   );
 };
