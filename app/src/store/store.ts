@@ -13,8 +13,7 @@ import { PRESET_LISTS } from '@/components/Wheel/presets';
 const loadedLists = loadListsFromStorage();
 const initialLists = loadedLists ?? PRESET_LISTS;
 const loadedSettings = loadSettingsFromStorage();
-const defaultActive =
-  loadedSettings?.activeList ?? initialLists[0]?.id ?? '';
+const defaultActive = loadedSettings?.activeList ?? initialLists[0]?.id ?? '';
 const defaultCount = loadedSettings?.count ?? 1;
 
 export const store = configureStore({

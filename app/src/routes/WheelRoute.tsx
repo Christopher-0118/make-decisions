@@ -41,11 +41,9 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
-      <button disabled={segments.length === 0} className={'goButton'} onClick={() => spin(count)}>
-        Spin
-      </button>
-      <div>Picked: {result.map((s) => s.label).join(', ') || '—'}</div>
+      <div onClick={() => spin(count)}>
+        <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
+      </div>
 
       <BottomSheet>
         <Tabs

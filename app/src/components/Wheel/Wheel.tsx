@@ -15,7 +15,11 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
     const toneCycle =
       segmentsNumber % 2 === 0
         ? ['wheel__slice-path--primary', 'wheel__slice-path--secondary-a']
-        : ['wheel__slice-path--primary', 'wheel__slice-path--secondary-a', 'wheel__slice-path--secondary-b'];
+        : [
+            'wheel__slice-path--primary',
+            'wheel__slice-path--secondary-a',
+            'wheel__slice-path--secondary-b',
+          ];
 
     const polarToXY = (cx: number, cy: number, r: number, a: number) => ({
       x: cx + r * Math.cos(a),
@@ -83,9 +87,6 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
         );
       })}
       <circle className="wheel__hub" cx={CENTER} cy={CENTER} r={HUB_RADIUS} />
-      <circle className="wheel__rim-shadow" cx={CENTER} cy={CENTER} r={RADIUS} />
-      <circle className="wheel__rim-highlight" cx={CENTER} cy={CENTER} r={RADIUS - 0.8} />
-      <circle className="wheel__border" cx={CENTER} cy={CENTER} r={RADIUS - 0.4} />
     </motion.svg>
   );
 };

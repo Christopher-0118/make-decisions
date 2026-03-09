@@ -11,10 +11,7 @@ function isWheelSettings(value: unknown): value is wheelSettingsState {
   const count = value['count'];
   const activeList = value['activeList'];
 
-  return (
-    typeof count === 'number' &&
-    typeof activeList === 'string'
-  );
+  return typeof count === 'number' && typeof activeList === 'string';
 }
 
 export function loadSettingsFromStorage(): wheelSettingsState | null {

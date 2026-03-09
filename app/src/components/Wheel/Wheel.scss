@@ -14,9 +14,7 @@
 .wheel__slice-path {
   stroke: tokens.$color-wheel-hub-fill;
   stroke-width: tokens.$wheel-slice-stroke-width;
-  transition:
-    opacity tokens.$duration-medium ease,
-    filter tokens.$duration-medium ease;
+  transition: filter tokens.$duration-medium ease;
 }
 
 .wheel__slice-path--primary {
@@ -32,41 +30,18 @@
 }
 
 .wheel__slice-path--active {
-  animation: pulse-slice 0.5s ease-in-out 3;
-  filter: brightness(1.07);
+  animation: pulse-slice 0.8s ease-in-out 3;
+  fill: #f1f1f7;
   transform-origin: 50px 50px;
   transform-box: view-box;
 }
 
-.wheel__rim-shadow {
-  fill: none;
-  // stroke: tokens.$color-wheel-rim-shadow;
-  // stroke-width: 0.65;
-  transform: translate(0.65px, 0.6px);
-  transform-origin: 50px 50px;
+.wheel__slice-path--active + .wheel__label {
+  fill: tokens.$color-active-element-light;
 }
 
 .wheel__hub {
   fill: tokens.$color-wheel-hub-fill;
-  // stroke: tokens.$color-wheel-hub-stroke;
-  // stroke-width: tokens.$wheel-hub-stroke-width;
-}
-
-.wheel__border {
-  fill: none;
-  
-  // stroke: tokens.$color-wheel-border;
-  // stroke-width: tokens.$wheel-border-width;
-}
-
-.wheel__rim-highlight {
-  fill: none;
-  stroke: tokens.$color-wheel-rim-highlight;
-  stroke-width: 0.6;
-  stroke-linecap: round;
-  stroke-dasharray: 18 320;
-  transform: rotate(86deg);
-  transform-origin: 50px 50px;
 }
 
 .wheel__label {
@@ -75,6 +50,10 @@
   text-anchor: middle;
   dominant-baseline: middle;
   user-select: none;
+  stroke: tokens.$color-wheel-secondary-b-soft;
+  stroke-width: 0.8px;
+
+  paint-order: stroke fill;
 }
 
 @keyframes pulse-slice {
