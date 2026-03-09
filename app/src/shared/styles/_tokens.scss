@@ -21,6 +21,25 @@ $color-active-element-light: #747bff;
 $icon-color-dark: rgba(255, 255, 255, 0.78);
 $color-active-element-dark: rgba(255, 255, 255, 0.96);
 
+// Wheel accents
+$color-wheel-primary: $color-active-element-light;
+$color-wheel-primary-soft: #979cff;
+$color-wheel-secondary-a-soft: #b1b5ff;
+$color-wheel-secondary-b-soft: #c6c9ff;
+$color-wheel-stroke: #7175bf;
+$color-wheel-rim-shadow: rgba(17, 24, 39, 0.16);
+$color-wheel-rim-highlight: rgba(255, 255, 255, 0.55);
+$color-wheel-hub-fill: #e4e4ff;
+$color-wheel-hub-stroke: #979cff;
+
+// Wheel sizing / motion
+$wheel-size: 320px;
+$wheel-slice-stroke-width: 2.1;
+$wheel-border-width: 1.4;
+$wheel-label-size: 6px;
+$wheel-hub-stroke-width: 0.35;
+$wheel-pulse-scale: 1.03;
+
 // Radii
 $radius-nav: 25px;
 $radius-nav-pill: 25px;
@@ -91,6 +110,11 @@ $easing-snap: cubic-bezier(0.22, 1, 0.36, 1);
   --icon-color: #{$icon-color-light};
   --color-active-element: #{$color-active-element-light};
   --icon-color-active: var(--color-active-element);
+
+  --color-wheel-primary: #{$color-wheel-primary};
+  --color-wheel-primary-soft: #{$color-wheel-primary-soft};
+  --color-wheel-secondary-b-soft: #{$color-wheel-secondary-b-soft};
+  --color-wheel-stroke: #{$color-wheel-stroke};
 
   --color-white: #{$color-white};
   --color-black: #{$color-black};

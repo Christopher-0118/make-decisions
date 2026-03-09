@@ -1,0 +1,113 @@
+import { w as u, p as s, O as f, S as g, q as h } from './chunk-WWGJGFF6-CzgBTqlU.js';
+import { c as m, P as y } from './redux-toolkit.modern-Bd2BvcLC.js';
+import { w as p, a as w, b as L } from './wheelListsSlice-DztqBp0q.js';
+import { c as x } from './coinHistorySlice-CLp7QKx1.js';
+import { d as j, a as v } from './diceHistorySlice-BBa3_6pN.js';
+const c = 'wheel_lists_v1';
+function A(t) {
+  return typeof t == 'object' && t !== null;
+}
+function R(t) {
+  return Array.isArray(t) && t.every((e) => typeof e == 'string');
+}
+function O(t) {
+  if (!A(t)) return !1;
+  const e = t.id,
+    i = t.name,
+    d = t.items;
+  return typeof e == 'string' && typeof i == 'string' && R(d);
+}
+function _(t) {
+  return Array.isArray(t) && t.every(O);
+}
+function b() {
+  try {
+    const t = localStorage.getItem(c);
+    if (!t) return null;
+    const e = JSON.parse(t);
+    return _(e) ? e : null;
+  } catch {
+    return null;
+  }
+}
+function E(t) {
+  try {
+    localStorage.setItem(c, JSON.stringify(t));
+  } catch (e) {
+    console.error('Failed to save lists to localStorage', e);
+  }
+}
+const a = 'wheel_settings_v1';
+function H(t) {
+  return typeof t == 'object' && t !== null;
+}
+function P(t) {
+  if (!H(t)) return !1;
+  const e = t.count,
+    i = t.activeList;
+  return typeof e == 'number' && typeof i == 'string';
+}
+function T() {
+  try {
+    const t = localStorage.getItem(a);
+    if (!t) return null;
+    const e = JSON.parse(t);
+    return P(e) ? e : null;
+  } catch {
+    return null;
+  }
+}
+function F(t) {
+  try {
+    localStorage.setItem(a, JSON.stringify(t));
+  } catch (e) {
+    console.error('Failed to save wheel settings to localStorage', e);
+  }
+}
+const I = [
+    { id: 'preset-food', name: 'Food', items: ['Pizza', 'Sushi', 'Pasta', 'Salad'] },
+    { id: 'preset-activities', name: 'Activities', items: ['Walk', 'Movie', 'Gym', 'Read'] },
+  ],
+  J = b(),
+  l = J ?? I,
+  S = T(),
+  M = S?.activeList ?? l[0]?.id ?? '',
+  N = S?.count ?? 1,
+  o = m({
+    reducer: {
+      wheelHistory: L,
+      wheelSettings: w,
+      wheelLists: p,
+      coinHistory: x,
+      diceSettings: v,
+      diceHistory: j,
+    },
+    preloadedState: { wheelLists: { collection: l }, wheelSettings: { activeList: M, count: N } },
+  });
+let n = o.getState().wheelLists.collection,
+  r = o.getState().wheelSettings;
+o.subscribe(() => {
+  const t = o.getState(),
+    e = t.wheelLists.collection;
+  e !== n && ((n = e), E(e));
+  const i = t.wheelSettings;
+  i !== r && ((r = i), F(i));
+});
+const W = u(function () {
+  return s.jsxs('html', {
+    lang: 'en',
+    children: [
+      s.jsxs('head', {
+        children: [
+          s.jsx('meta', { charSet: 'utf-8' }),
+          s.jsx('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
+          s.jsx('title', { children: 'Make Decisions' }),
+        ],
+      }),
+      s.jsxs('body', {
+        children: [s.jsx(y, { store: o, children: s.jsx(f, {}) }), s.jsx(g, {}), s.jsx(h, {})],
+      }),
+    ],
+  });
+});
+export { W as default };

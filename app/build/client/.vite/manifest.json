@@ -1,0 +1,175 @@
+{
+  "_chunk-WWGJGFF6-CzgBTqlU.js": {
+    "file": "assets/chunk-WWGJGFF6-CzgBTqlU.js",
+    "name": "chunk-WWGJGFF6"
+  },
+  "_coinHistorySlice-CLp7QKx1.js": {
+    "file": "assets/coinHistorySlice-CLp7QKx1.js",
+    "name": "coinHistorySlice",
+    "imports": ["_redux-toolkit.modern-Bd2BvcLC.js"]
+  },
+  "_createLucideIcon-CaUA1BhJ.js": {
+    "file": "assets/createLucideIcon-CaUA1BhJ.js",
+    "name": "createLucideIcon",
+    "imports": ["_chunk-WWGJGFF6-CzgBTqlU.js"]
+  },
+  "_diceHistorySlice-BBa3_6pN.js": {
+    "file": "assets/diceHistorySlice-BBa3_6pN.js",
+    "name": "diceHistorySlice",
+    "imports": ["_redux-toolkit.modern-Bd2BvcLC.js"]
+  },
+  "_page-Df6RNK2B.css": {
+    "file": "assets/page-Df6RNK2B.css",
+    "src": "_page-Df6RNK2B.css"
+  },
+  "_page-wVPJcAao.js": {
+    "file": "assets/page-wVPJcAao.js",
+    "name": "page",
+    "imports": [
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_proxy-CnLaudG0.js",
+      "_redux-toolkit.modern-Bd2BvcLC.js"
+    ],
+    "css": ["assets/page-Df6RNK2B.css"]
+  },
+  "_preload-helper-BXl3LOEh.js": {
+    "file": "assets/preload-helper-BXl3LOEh.js",
+    "name": "preload-helper"
+  },
+  "_proxy-CnLaudG0.js": {
+    "file": "assets/proxy-CnLaudG0.js",
+    "name": "proxy",
+    "imports": ["_chunk-WWGJGFF6-CzgBTqlU.js"]
+  },
+  "_redux-toolkit.modern-Bd2BvcLC.js": {
+    "file": "assets/redux-toolkit.modern-Bd2BvcLC.js",
+    "name": "redux-toolkit.modern",
+    "imports": ["_chunk-WWGJGFF6-CzgBTqlU.js"]
+  },
+  "_trash-2-Dp3dLB2C.js": {
+    "file": "assets/trash-2-Dp3dLB2C.js",
+    "name": "trash-2",
+    "imports": ["_createLucideIcon-CaUA1BhJ.js"]
+  },
+  "_wheelListsSlice-DztqBp0q.js": {
+    "file": "assets/wheelListsSlice-DztqBp0q.js",
+    "name": "wheelListsSlice",
+    "imports": ["_redux-toolkit.modern-Bd2BvcLC.js"]
+  },
+  "src/assets/d10.png": {
+    "file": "assets/d10-Cv-mn3aL.png",
+    "src": "src/assets/d10.png"
+  },
+  "src/assets/d12.png": {
+    "file": "assets/d12-C_aKkGmk.png",
+    "src": "src/assets/d12.png"
+  },
+  "src/assets/d20.png": {
+    "file": "assets/d20-BpgsNYgV.png",
+    "src": "src/assets/d20.png"
+  },
+  "src/components/History/History.tsx": {
+    "file": "assets/History-Dmurc1Sm.js",
+    "name": "History",
+    "src": "src/components/History/History.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_trash-2-Dp3dLB2C.js",
+      "_createLucideIcon-CaUA1BhJ.js"
+    ],
+    "css": ["assets/History-CBMwa4wd.css"]
+  },
+  "src/entry.client.tsx": {
+    "file": "assets/entry.client-DSw-yULL.js",
+    "name": "entry.client",
+    "src": "src/entry.client.tsx",
+    "isEntry": true,
+    "imports": ["_chunk-WWGJGFF6-CzgBTqlU.js"]
+  },
+  "src/root.tsx?__react-router-build-client-route": {
+    "file": "assets/root-dYP-8A5W.js",
+    "name": "root",
+    "src": "src/root.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_redux-toolkit.modern-Bd2BvcLC.js",
+      "_wheelListsSlice-DztqBp0q.js",
+      "_coinHistorySlice-CLp7QKx1.js",
+      "_diceHistorySlice-BBa3_6pN.js"
+    ],
+    "css": ["assets/root-DefUeSBI.css"]
+  },
+  "src/routes/CoinRoute.tsx?__react-router-build-client-route": {
+    "file": "assets/CoinRoute-D22Ku31d.js",
+    "name": "CoinRoute",
+    "src": "src/routes/CoinRoute.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_page-wVPJcAao.js",
+      "src/components/History/History.tsx",
+      "_proxy-CnLaudG0.js",
+      "_coinHistorySlice-CLp7QKx1.js",
+      "_redux-toolkit.modern-Bd2BvcLC.js",
+      "_trash-2-Dp3dLB2C.js",
+      "_createLucideIcon-CaUA1BhJ.js"
+    ],
+    "css": ["assets/CoinRoute-B9pQ-Jvj.css"]
+  },
+  "src/routes/DiceRoute.tsx?__react-router-build-client-route": {
+    "file": "assets/DiceRoute-DsqH6kYf.js",
+    "name": "DiceRoute",
+    "src": "src/routes/DiceRoute.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_preload-helper-BXl3LOEh.js",
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_page-wVPJcAao.js",
+      "_diceHistorySlice-BBa3_6pN.js",
+      "_proxy-CnLaudG0.js",
+      "_redux-toolkit.modern-Bd2BvcLC.js"
+    ],
+    "dynamicImports": ["src/components/History/History.tsx"],
+    "css": ["assets/DiceRoute-DZ07SxXz.css"],
+    "assets": ["assets/d10-Cv-mn3aL.png", "assets/d12-C_aKkGmk.png", "assets/d20-BpgsNYgV.png"]
+  },
+  "src/routes/RedirectToWheel.tsx?__react-router-build-client-route": {
+    "file": "assets/RedirectToWheel-DKoKZk6i.js",
+    "name": "RedirectToWheel",
+    "src": "src/routes/RedirectToWheel.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": ["_chunk-WWGJGFF6-CzgBTqlU.js"]
+  },
+  "src/routes/WheelRoute.tsx?__react-router-build-client-route": {
+    "file": "assets/WheelRoute-DDQrH5bG.js",
+    "name": "WheelRoute",
+    "src": "src/routes/WheelRoute.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_preload-helper-BXl3LOEh.js",
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_page-wVPJcAao.js",
+      "_proxy-CnLaudG0.js",
+      "_wheelListsSlice-DztqBp0q.js",
+      "_createLucideIcon-CaUA1BhJ.js",
+      "_trash-2-Dp3dLB2C.js",
+      "_redux-toolkit.modern-Bd2BvcLC.js"
+    ],
+    "dynamicImports": ["src/components/History/History.tsx"],
+    "css": ["assets/WheelRoute-CA9-49CY.css"]
+  },
+  "src/routes/layout.tsx?__react-router-build-client-route": {
+    "file": "assets/layout-BRbyGu7x.js",
+    "name": "layout",
+    "src": "src/routes/layout.tsx?__react-router-build-client-route",
+    "isEntry": true,
+    "imports": [
+      "_chunk-WWGJGFF6-CzgBTqlU.js",
+      "_createLucideIcon-CaUA1BhJ.js",
+      "_proxy-CnLaudG0.js"
+    ],
+    "css": ["assets/layout-BDYCafx4.css"]
+  }
+}
