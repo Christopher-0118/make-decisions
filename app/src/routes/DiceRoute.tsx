@@ -48,12 +48,11 @@ const DiceRoute = () => {
 
   return (
     <div className={'page'}>
-
-      <button 
-        className={'button-like'} 
-        onClick={roll} 
+      <button
+        className={'button-like button-like__roll'}
+        onClick={roll}
         disabled={isRolling}
-        aria-label='roll'
+        aria-label="roll"
       >
         <DiceGroup
           count={count}
@@ -63,13 +62,9 @@ const DiceRoute = () => {
           onRollEnd={handleRollEnd}
         />
       </button>
-      <div
-        className="sr-only"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {pendingValues.length ? `Rolled: ${pendingValues.join(", ")}` : "No result yet"}
-    </div>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {pendingValues.length ? `Rolled: ${pendingValues.join(', ')}` : 'No result yet'}
+      </div>
 
       <BottomSheet>
         <Tabs

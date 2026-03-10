@@ -30,10 +30,12 @@ const CoinRoute = () => {
 
   return (
     <div className="page">
-      <div onClick={handleFlip}>
+      <button className="button-like button-like__toss" onClick={handleFlip}>
         <Coin side={coinSide} isFlipping={isFlipping} onFlipEnd={() => setIsFlipping(false)} />
+      </button>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {result[0] ? `Tossed: ${result[0]}` : 'No result yet'}
       </div>
-
       <BottomSheet>
         <Tabs
           historyContent={<History entries={history} onClear={() => dispatch(clearAllEntries())} />}

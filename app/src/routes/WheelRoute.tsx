@@ -16,7 +16,7 @@ const WheelRoute = () => {
   const count = useAppSelector((state) => state.wheelSettings.count);
   const history = useAppSelector((state) => state.wheelHistory.entries);
   const dispatch = useAppDispatch();
- 
+
   const activeListId = useAppSelector((state) => state.wheelSettings.activeList);
   const lists: ListModel[] = useAppSelector((state) => state.wheelLists.collection);
   const activeList = lists.find((list) => list.id === activeListId);
@@ -41,7 +41,7 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <div onClick={() => spin(count)}>
+      <div className="button-like__spin" onClick={() => spin(count)}>
         <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
       </div>
 
