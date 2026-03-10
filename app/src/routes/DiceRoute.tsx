@@ -8,7 +8,7 @@ import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addEntry, clearAllEntries } from '@/store/diceHistorySlice';
-import './page.css';
+import './page.scss';
 
 const History = lazy(() => import('@/components/History/History'));
 
@@ -48,17 +48,28 @@ const DiceRoute = () => {
 
   return (
     <div className={'page'}>
-      <DiceGroup
-        count={count}
-        faces={faces}
-        values={displayValues}
-        isRolling={isRolling}
-        onRollEnd={handleRollEnd}
-      />
 
-      <button className={'goButton'} onClick={roll} disabled={isRolling}>
-        {isRolling ? 'Rolling...' : 'Roll'}
+      <button 
+        className={'button-like'} 
+        onClick={roll} 
+        disabled={isRolling}
+        aria-label='roll'
+      >
+        <DiceGroup
+          count={count}
+          faces={faces}
+          values={displayValues}
+          isRolling={isRolling}
+          onRollEnd={handleRollEnd}
+        />
       </button>
+      <div
+        className="sr-only"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {pendingValues.length ? `Rolled: ${pendingValues.join(", ")}` : "No result yet"}
+    </div>
 
       <BottomSheet>
         <Tabs
