@@ -1,0 +1,72 @@
+@use '@/shared/styles/_mixins.scss' as mixins;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(102 104 116 / 35%);
+  z-index: 40;
+  touch-action: none;
+}
+
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  height: 70dvh;
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-shadow(var(--shadow-sheet));
+}
+
+.handleButton {
+  padding: 4px 0;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.grabber {
+  width: 44px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, var(--opacity-light));
+  margin: 0 auto;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+  user-select: none;
+}
+
+.title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  opacity: var(--opacity-near-opaque);
+}
+
+.chevron {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, var(--opacity-subtle));
+  font-size: var(--font-size-lg);
+  line-height: 1;
+}
+
+.content {
+  padding: 0 14px 14px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

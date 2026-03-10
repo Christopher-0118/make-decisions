@@ -10,7 +10,7 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addEntry } from '@/store/coinHistorySlice';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { clearAllEntries } from '@/store/coinHistorySlice';
-import './page.css';
+import './page.scss';
 
 const CoinRoute = () => {
   const dispatch = useAppDispatch();
@@ -27,19 +27,18 @@ const CoinRoute = () => {
     if (picked[0]) dispatch(addEntry(picked[0]));
     setIsFlipping(true);
   };
-  
+
   return (
     <div className="page">
-      < div onClick={handleFlip}>
-        <Coin 
-          side={coinSide} 
-          isFlipping={isFlipping} 
-          onFlipEnd={() => setIsFlipping(false)}
-        />
+      <div onClick={handleFlip}>
+        <Coin side={coinSide} isFlipping={isFlipping} onFlipEnd={() => setIsFlipping(false)} />
       </div>
 
       <BottomSheet>
-        <Tabs historyContent={<History entries={history} onClear={() => dispatch(clearAllEntries())}/>} defaultTab="history" />
+        <Tabs
+          historyContent={<History entries={history} onClear={() => dispatch(clearAllEntries())} />}
+          defaultTab="history"
+        />
       </BottomSheet>
     </div>
   );

@@ -1,7 +1,6 @@
 import { useMemo, useState, lazy, Suspense } from 'react';
 import Wheel from '@/components/Wheel/Wheel';
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import Settings from '@/components/Settings/Settings';
 import Tabs from '@/components/Tabs/Tabs';
 import useRandomizer from '@/hooks/useRandomizer';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
@@ -10,7 +9,8 @@ import { addEntry } from '@/store/wheelHistorySlice';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
 import type { ListModel, Segment } from '@/components/type';
 import { clearAllEntries } from '@/store/wheelHistorySlice';
-import './page.css';
+import './page.scss';
+import WheelSettings from '@/components/Settings/WheelSettings';
 
 const WheelRoute = () => {
   const count = useAppSelector((state) => state.wheelSettings.count);
@@ -41,18 +41,16 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
-      <button disabled={segments.length === 0} className={'goButton'} onClick={() => spin(count)}>
-        Spin
-      </button>
-      <div>Picked: {result.map((s) => s.label).join(', ') || '—'}</div>
+      <div onClick={() => spin(count)}>
+        <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
+      </div>
 
       <BottomSheet>
         <Tabs
-          settingsContent={<Settings />}
+          settingsContent={<WheelSettings />}
           historyContent={
             <Suspense fallback={<div>Loading...</div>}>
-              <History  entries={history} onClear={() => dispatch(clearAllEntries())} />
+              <History entries={history} onClear={() => dispatch(clearAllEntries())} />
             </Suspense>
           }
           defaultTab="settings"

@@ -1,0 +1,102 @@
+@use './_tokens.scss' as tokens;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Text',
+    sans-serif;
+  line-height: 1.5;
+  font-weight: var(--font-weight-normal);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-app);
+  color: var(--icon-color);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: clamp(20px, 4vw, 32px);
+  line-height: 1.1;
+}
+
+p {
+  font-size: clamp(14px, 3.2vw, 16px);
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: var(--font-weight-medium);
+  font-family: inherit;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  box-shadow: var(--shadow-nav-edge);
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+  //box-shadow: none;
+}
+
+button:active {
+  background-color: inherit;
+}
+
+.iconTrash {
+  svg {
+    height: 14px;
+    width: 14px;
+  }
+
+  background: none;
+  border: none;
+  margin-bottom: 5px;
+  padding: var(--space-pad-xs) var(--gap-md);
+  border-radius: var(--radius-pill);
+}
+
+.goButton {
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-app: #{tokens.$bg-app-dark};
+    --glass-surface: #{tokens.$glass-surface-dark};
+    --glass-surface-fallback: #{tokens.$glass-surface-dark-fallback};
+    --icon-color: #{tokens.$icon-color-dark};
+    --color-active-element: #{tokens.$color-active-element-dark};
+    --icon-color-active: var(--color-active-element);
+  }
+
+  body {
+    background: var(--bg-app);
+    color: var(--icon-color);
+  }
+}

@@ -1,0 +1,110 @@
+@use '@/shared/styles/_mixins.scss';
+@use '@/shared/styles/_tokens.scss';
+@use '@/shared/styles/_globals.scss';
+
+.discrete-slider {
+  display: grid;
+  grid-template-columns: 90px auto; // left column is fixed width
+  align-items: center;
+  gap: 15px;
+}
+
+.label {
+  font-size: inherit;
+  font-weight: tokens.$font-weight-bold;
+  align-self: start;
+}
+
+.slider-wrapper {
+  position: relative;
+  height: 76px;
+  max-width: 350px;
+  width: 95%;
+  justify-self: start;
+  align-items: center;
+}
+
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: tokens.$gap-xl; // 12px from tokens
+  height: 5px; // no matching token for 5px track height
+  border-radius: tokens.$radius-pill;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: tokens.$color-active-element-light; // use active element color token
+  opacity: tokens.$opacity-prominent; // closest match to original 0.55
+}
+
+.marks {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.mark {
+  border-radius: tokens.$radius-pill;
+  padding: 0;
+  @include mixins.icon-button(tokens.$gap-lg, tokens.$font-size-md);
+}
+
+.mark__active {
+  background: tokens.$color-active-element-light;
+}
+
+.mark__inactive {
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  @include mixins.glass-inner-highlight(tokens.$opacity-prominent);
+}
+
+.mark__current {
+  box-shadow: 0 0 0 5px rgba(123, 76, 255, 0.25);
+}
+
+.badge {
+  position: absolute;
+  top: 27px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.badge-box {
+  width: 20px;
+  height: 20px;
+  border-radius: tokens.$gap-lg;
+  background: tokens.$color-active-element-light;
+  border: tokens.$gap-sm solid #5b3ad6;
+  color: var(--color-white);
+  font-size: 0.6rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge-pointer {
+  width: 0;
+  height: 0;
+  margin: -2px auto;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #5b3ad6;
+}
+
+.native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}

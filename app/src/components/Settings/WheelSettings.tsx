@@ -15,7 +15,7 @@ import {
   addListItem,
 } from '@/store/wheelListsSlice';
 
-const Settings = () => {
+const WheelSettings = () => {
   const dispatch = useAppDispatch();
   const lists = useAppSelector((state) => state.wheelLists.collection);
   const resultsCount = useAppSelector((state) => state.wheelSettings.count);
@@ -51,6 +51,13 @@ const Settings = () => {
     }
   };
 
+  const handleBlurItem = (listId: string, index: number) => {
+    const list = lists.find((item) => item.id === listId);
+    const value = list?.items[index] ?? '';
+    if (value.trim() !== '') return;
+    dispatch(deleteListItem({ listId, index }));
+  };
+
   return (
     <div className={styles.root}>
       <CountSelector
@@ -68,7 +75,7 @@ const Settings = () => {
         onToggleExpanded={(id) => setExpandedListId((prev) => (prev === id ? null : id))}
         onChangeListName={(id, name) => dispatch(editListName({ listId: id, newName: name }))}
         onChangeItem={(listId, index, value) => dispatch(editListItem({ listId, index, value }))}
-        onBlurItem={(listId, index) => dispatch(deleteListItem({ listId, index }))}
+        onBlurItem={handleBlurItem}
         onAddItem={(listId, value) => dispatch(addListItem({ listId, value }))}
         onAddList={handleAddNewList}
         onDeleteList={handleDeleteList}
@@ -77,4 +84,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default WheelSettings;

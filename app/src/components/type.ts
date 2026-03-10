@@ -1,9 +1,9 @@
-import type { HistoryResults } from "@/store/type";
+import type { die, HistoryResults } from '@/store/type';
 
 // components
 export const RADIUS = 50;
 export const CENTER = 50;
-export const PEEK = 20;
+export const PEEK = 10;
 export const CLOSE_RATIO = 0.3;
 export const OPEN_RATIO = 0.15;
 export const FLICK_VELOCITY = 800;
@@ -11,6 +11,13 @@ export const FULL_TURNS = 3;
 export const FULL_FLIP = 360 * FULL_TURNS;
 export const HALF_FLIP = 180;
 export const SIDE = 1;
+export const SIDES = [4, 6, 8, 10, 12, 20] as const;
+export const COUNTS = [1, 2, 3, 4, 5] as const;
+export const DELAYS = [40, 60, 90, 130, 190, 270, 380];
+export const DEFAULT_DELAY = 80;
+export const DEFAULT_SIZE_PX = 85;
+
+//Coin
 
 export type CoinSide = 'heads' | 'tails';
 
@@ -20,16 +27,6 @@ export type CoinProps = {
   onFlipEnd?: () => void;
 };
 
-export type ListModel = {
-  id: string;
-  name: string;
-  items: string[];
-};
-
-export type ListModelState = {
-  collection: ListModel[];
-};
-
 export type CountSelectorProps = {
   value: number;
   min: number;
@@ -37,8 +34,9 @@ export type CountSelectorProps = {
   onChange: (next: number) => void;
 };
 
-export type SettingsTabProps = {
-  initialLists?: ListModel[];
+export type HistoryProps = {
+  entries: HistoryResults[];
+  onClear: () => void;
 };
 
 export type HistoryProps = {
@@ -61,6 +59,23 @@ export type TabsProps = {
   swipeThresholdPx?: number;
 };
 
+export type WheelProps = {
+  segments: Segment[];
+  rotationDeg?: number;
+  highlightedIds?: string[];
+  size?: number;
+};
+
+export type ListModel = {
+  id: string;
+  name: string;
+  items: string[];
+};
+
+export type ListModelState = {
+  collection: ListModel[];
+};
+
 export type ListsEditorProps = {
   lists: ListModel[];
   activeListId: string;
@@ -77,9 +92,35 @@ export type ListsEditorProps = {
 
 export type Segment = { id: string; label: string };
 
-export type WheelProps = {
-  segments: Segment[];
-  rotationDeg?: number;
-  highlightedIds?: string[];
-  size?: number;
+export type DiscreteSliderProps<T extends number> = {
+  label: string;
+  values: readonly T[];
+  value: T;
+  onChange: (next: T) => void;
+};
+
+// Dice
+
+export type DiceGroupProps = {
+  count: number;
+  faces: die;
+  values: number[];
+  isRolling: boolean;
+  onRollEnd?: () => void;
+};
+
+export type DieProps = {
+  faces: die;
+  value: number;
+  isRolling: boolean;
+  onRollEnd?: () => void;
+  sizePx?: number;
+};
+
+export type SpriteMeta = {
+  url: string;
+  cols: number;
+  rows: number;
+  frameSize: number;
+  rollFrames: number;
 };
