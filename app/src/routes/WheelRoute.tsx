@@ -9,7 +9,7 @@ import { addEntry } from '@/store/wheelHistorySlice';
 import { FULL_CIRCLE, SEED, SPINS_COUNT } from './types';
 import type { ListModel, Segment } from '@/components/type';
 import { clearAllEntries } from '@/store/wheelHistorySlice';
-import './page.css';
+import './page.scss';
 import WheelSettings from '@/components/Settings/WheelSettings';
 
 const WheelRoute = () => {
@@ -41,11 +41,9 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
-      <button disabled={segments.length === 0} className={'goButton'} onClick={() => spin(count)}>
-        Spin
-      </button>
-      <div>Picked: {result.map((s) => s.label).join(', ') || '—'}</div>
+      <div onClick={() => spin(count)}>
+        <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
+      </div>
 
       <BottomSheet>
         <Tabs

@@ -1,0 +1,171 @@
+// Design tokens: colors, radii, spacing, shadows, motion
+
+// App background
+$bg-app-light: #f2f2f7;
+$bg-app-dark: #000000;
+
+// Text colors
+$color-white: #fff;
+$color-black: #000;
+$color-coin-label: rgba(114, 76, 23, 0.911);
+
+// Glass surfaces
+$glass-surface-light: rgba(255, 255, 255, 0.16);
+$glass-surface-light-fallback: rgba(245, 245, 245, 0.92);
+$glass-surface-dark: rgba(30, 30, 30, 0.6);
+$glass-surface-dark-fallback: rgba(30, 30, 30, 0.92);
+
+// Base / active colors
+$icon-color-light: rgba(0, 0, 0, 0.78);
+$color-active-element-light: #747bff;
+$icon-color-dark: rgba(255, 255, 255, 0.78);
+$color-active-element-dark: rgba(255, 255, 255, 0.96);
+
+// Wheel accents
+$color-wheel-primary: $color-active-element-light;
+$color-wheel-primary-soft: #979cff;
+$color-wheel-secondary-a-soft: #b1b5ff;
+$color-wheel-secondary-b-soft: #c6c9ff;
+$color-wheel-stroke: #7175bf;
+$color-wheel-rim-shadow: rgba(17, 24, 39, 0.16);
+$color-wheel-rim-highlight: rgba(255, 255, 255, 0.55);
+$color-wheel-hub-fill: #e4e4ff;
+$color-wheel-hub-stroke: #979cff;
+
+// Wheel sizing / motion
+$wheel-size: 320px;
+$wheel-slice-stroke-width: 2.1;
+$wheel-border-width: 1.4;
+$wheel-label-size: 6px;
+$wheel-hub-stroke-width: 0.35;
+$wheel-pulse-scale: 1.03;
+
+// Radii
+$radius-nav: 25px;
+$radius-nav-pill: 25px;
+$radius-sheet: 26px;
+$radius-pill: 999px;
+
+// Spacing
+$space-pad-xs: 3px;
+$space-pad-s: 6px;
+$space-pad-m: 10px;
+$space-pad-l: 16px;
+
+// Gap (spacing between elements)
+$gap-xs: 2px;
+$gap-sm: 3px;
+$gap-md: 6px;
+$gap-lg: 10px;
+$gap-xl: 12px;
+
+// Font sizes
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 15px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+
+// Font weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Opacity
+$opacity-subtle: 0.06;
+$opacity-faint: 0.12;
+$opacity-light: 0.18;
+$opacity-medium: 0.35;
+$opacity-strong: 0.4;
+$opacity-prominent: 0.6;
+$opacity-semiopaque: 0.75;
+$opacity-bright: 0.78;
+$opacity-near-opaque: 0.85;
+$opacity-almost-opaque: 0.96;
+
+// Shadows
+$shadow-nav-edge:
+  0.5px 1px 0px 0px rgba(255, 255, 255, 1.18),
+  -0.5px -1px 0px 0px rgba(255, 255, 255, 1.18);
+$shadow-nav-pill: 0 10px 26px rgba(0, 0, 0, 0.1);
+$shadow-sheet: 0 -5px 10px rgba(0, 0, 0, 0.08);
+
+// Blur / saturation
+$glass-blur-strong: 24px;
+$glass-saturate-strong: 1.8;
+
+// Motion
+$duration-fast: 0.18s;
+$duration-medium: 0.24s;
+$easing-snap: cubic-bezier(0.22, 1, 0.36, 1);
+
+// Expose as CSS variables for runtime theming
+:root {
+  --bg-app: #{$bg-app-light};
+
+  --glass-surface: #{$glass-surface-light};
+  --glass-surface-fallback: #{$glass-surface-light-fallback};
+
+  --icon-color: #{$icon-color-light};
+  --color-active-element: #{$color-active-element-light};
+  --icon-color-active: var(--color-active-element);
+
+  --color-wheel-primary: #{$color-wheel-primary};
+  --color-wheel-primary-soft: #{$color-wheel-primary-soft};
+  --color-wheel-secondary-b-soft: #{$color-wheel-secondary-b-soft};
+  --color-wheel-stroke: #{$color-wheel-stroke};
+
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+  --color-coin-label: #{$color-coin-label};
+
+  --radius-nav: #{$radius-nav};
+  --radius-nav-pill: #{$radius-nav-pill};
+  --radius-sheet: #{$radius-sheet};
+  --radius-pill: #{$radius-pill};
+
+  --space-pad-xs: #{$space-pad-xs};
+  --space-pad-s: #{$space-pad-s};
+  --space-pad-m: #{$space-pad-m};
+  --space-pad-l: #{$space-pad-l};
+
+  --gap-xs: #{$gap-xs};
+  --gap-sm: #{$gap-sm};
+  --gap-md: #{$gap-md};
+  --gap-lg: #{$gap-lg};
+  --gap-xl: #{$gap-xl};
+
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-md: #{$font-size-md};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+
+  --font-weight-normal: #{$font-weight-normal};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  --opacity-subtle: #{$opacity-subtle};
+  --opacity-faint: #{$opacity-faint};
+  --opacity-light: #{$opacity-light};
+  --opacity-medium: #{$opacity-medium};
+  --opacity-strong: #{$opacity-strong};
+  --opacity-prominent: #{$opacity-prominent};
+  --opacity-semiopaque: #{$opacity-semiopaque};
+  --opacity-bright: #{$opacity-bright};
+  --opacity-near-opaque: #{$opacity-near-opaque};
+  --opacity-almost-opaque: #{$opacity-almost-opaque};
+
+  --shadow-nav-edge: #{$shadow-nav-edge};
+  --shadow-nav-pill: #{$shadow-nav-pill};
+  --shadow-sheet: #{$shadow-sheet};
+
+  --glass-blur-strong: #{$glass-blur-strong};
+  --glass-saturate-strong: #{$glass-saturate-strong};
+
+  --duration-fast: #{$duration-fast};
+  --duration-medium: #{$duration-medium};
+  --easing-snap: #{$easing-snap};
+}

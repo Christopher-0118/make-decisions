@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
-import styles from './bottomSheet.module.css';
+import './bottomSheet.scss';
 import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK } from '../type';
 
 const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
@@ -43,7 +43,7 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
         {open && (
           <motion.div
             key="overlay"
-            className={styles.overlay}
+            className={'overlay'}
             onClick={() => setOpen(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -56,7 +56,7 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
       {/* Sheet */}
       <motion.div
         ref={sheetRef}
-        className={styles.sheet}
+        className={'sheet'}
         role="dialog"
         aria-modal="true"
         aria-expanded={open}
@@ -71,15 +71,15 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
         {/* Handle */}
         <button
           type="button"
-          className={styles.handleButton}
+          className={'handleButton'}
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Close panel' : 'Open panel'}
         >
-          <div className={styles.grabber} />
+          <div className={'grabber'} />
         </button>
 
         {/* Content */}
-        <div className={styles.content}>{children}</div>
+        <div className={'content'}>{children}</div>
       </motion.div>
     </>
   );

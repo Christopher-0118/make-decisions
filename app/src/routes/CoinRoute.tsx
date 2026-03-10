@@ -10,7 +10,7 @@ import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addEntry } from '@/store/coinHistorySlice';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { clearAllEntries } from '@/store/coinHistorySlice';
-import './page.css';
+import './page.scss';
 
 const CoinRoute = () => {
   const dispatch = useAppDispatch();

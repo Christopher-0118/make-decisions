@@ -1,26 +1,28 @@
 import type { CountSelectorProps } from '../type';
-import styles from './CountSelector.module.css';
+import './CountSelector.scss';
 
 const CountSelector = ({ value, min, max, onChange }: CountSelectorProps) => {
   return (
-    <section className={styles.block}>
-      <div className={styles.blockTitle}>Results count:</div>
+    <section className="block__row">
+      <div className="blockTitle">Results count:</div>
 
-      <div className={styles.countRow}>
+      <div className="countRow">
         <button
           type="button"
-          className={styles.countBtn}
+          aria-label="Decrease results count"
+          className="countBtn"
           onClick={() => onChange(value - 1)}
           disabled={value <= min}
         >
           −
         </button>
 
-        <div className={styles.countValue}>{value}</div>
+        <div className="countValue">{value}</div>
 
         <button
           type="button"
-          className={styles.countBtn}
+          aria-label="Increase results count"
+          className="countBtn"
           onClick={() => onChange(value + 1)}
           disabled={value >= max}
         >

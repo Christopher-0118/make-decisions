@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import './discreteSlider.css';
+import './discreteSlider.scss';
 import type { DiscreteSliderProps } from '../type';
 
 const DiscreteSlider = <T extends number>({
