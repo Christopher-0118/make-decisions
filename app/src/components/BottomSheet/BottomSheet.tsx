@@ -1,17 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
-import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK } from '../type';
+import { animate, motion, type PanInfo, useMotionValue, useTransform } from 'framer-motion';
+import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK, 
+         type UP, type DOWN, type UNSETTLED, 
+         SHEET_SPRING_DAMPING,
+         SHEET_SPRING_STIFFNESS} from '../type';
 import './bottomSheet.scss';
 
 const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
+  const lastDragDirectionRef = useRef<UP | UNSETTLED | DOWN>(0);
   const [open, setOpen] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [sheetPxHeight, setSheetPxHeight] = useState(0);
+  const y = useMotionValue(9999);
 
   useEffect(() => {
     const element = sheetRef.current;
     if (!element) return;
-
     const resizer = new ResizeObserver(() => {
       setSheetPxHeight(element.getBoundingClientRect().height);
     });
@@ -23,49 +28,91 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
   }, []);
 
   const closedOffsetY = Math.max(0, sheetPxHeight - PEEK);
+  const overlayOpacity = useTransform(y, [0, Math.max(closedOffsetY, 1)], [1, 0]);
+
+  useEffect(() => {
+    if (sheetPxHeight === 0 || isDragging) return;
+
+    const controls = animate(y, open ? 0 : closedOffsetY, {
+      type: 'spring',
+      stiffness: SHEET_SPRING_STIFFNESS,
+      damping: SHEET_SPRING_DAMPING,
+    });
+
+    return () => controls.stop();
+  }, [closedOffsetY, isDragging, open, sheetPxHeight, y]);
+
+  const handleDragStart = () => {
+    lastDragDirectionRef.current = 0;
+    setIsDragging(true);
+  };
+
+  const handleDrag = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.delta.y < 0) {
+      lastDragDirectionRef.current = -1;
+      return;
+    }
+    if (info.delta.y > 0) {
+      lastDragDirectionRef.current = 1;
+    }
+  };
 
   const handleDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
+    const lastDirection = lastDragDirectionRef.current;
+    setIsDragging(false);
 
+    if (velocity.y > FLICK_VELOCITY) {
+      setOpen(false);
+      return;
+    }
+    if (velocity.y < -FLICK_VELOCITY) {
+      setOpen(true);
+      return;
+    }
+    if (lastDirection === 1) {
+      setOpen(false);
+      return;
+    }
+    if (lastDirection === -1) {
+      setOpen(true);
+      return;
+    }
     if (offset.y > closedOffsetY * CLOSE_RATIO || velocity.y > FLICK_VELOCITY) {
       setOpen(false);
       return;
-    } else if (offset.y < -closedOffsetY * OPEN_RATIO || velocity.y < -FLICK_VELOCITY) {
+    }
+
+    if (offset.y < -closedOffsetY * OPEN_RATIO || velocity.y < -FLICK_VELOCITY) {
       setOpen(true);
-      return;
     }
   };
 
   return (
     <>
-      {/* Overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="overlay"
-            className={'overlay'}
-            onClick={() => setOpen(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.18 }}
-          />
-        )}
-      </AnimatePresence>
+      <motion.div
+        className={'overlay'}
+        onClick={() => open && setOpen(false)}
+        aria-hidden="true"
+        style={{
+          opacity: overlayOpacity,
+          pointerEvents: open ? 'auto' : 'none',
+        }}
+      />
 
-      {/* Sheet */}
       <motion.div
         ref={sheetRef}
         className={'sheet'}
         role="dialog"
         aria-modal="true"
         aria-expanded={open}
-        initial={{ y: 9999 }}
-        animate={{ y: open ? 0 : closedOffsetY }}
-        transition={{ type: 'spring', stiffness: 420, damping: 38 }}
+        style={{ y }}
         drag="y"
         dragConstraints={{ top: 0, bottom: closedOffsetY }}
         dragElastic={0.05}
+        dragMomentum={false}
+        onDragStart={handleDragStart}
+        onDrag={handleDrag}
         onDragEnd={handleDragEnd}
       >
         {/* Handle */}

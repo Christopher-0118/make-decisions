@@ -16,6 +16,13 @@ export const COUNTS = [1, 2, 3, 4, 5] as const;
 export const DELAYS = [40, 60, 90, 130, 190, 270, 380];
 export const DEFAULT_DELAY = 80;
 export const DEFAULT_SIZE_PX = 85;
+export const SHEET_SPRING_STIFFNESS = 420;
+export const SHEET_SPRING_DAMPING = 38;
+
+
+export type UP = -1;
+export type DOWN = 1;
+export type UNSETTLED = 0;
 
 //Coin
 
