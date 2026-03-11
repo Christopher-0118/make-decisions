@@ -39,11 +39,6 @@ export type HistoryProps = {
   onClear: () => void;
 };
 
-export type HistoryProps = {
-  entries: HistoryResults[];
-  onClear: () => void;
-};
-
 export type TabProps = {
   id: string;
   label: string;
