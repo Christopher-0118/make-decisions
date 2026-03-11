@@ -41,7 +41,7 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <div onClick={() => spin(count)}>
+      <div className="button-like__spin" onClick={() => spin(count)}>
         <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
       </div>
 
