@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, type PanInfo } from 'framer-motion';
-import './bottomSheet.scss';
 import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK } from '../type';
+import './bottomSheet.scss';
 
 const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
