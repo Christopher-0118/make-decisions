@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { animate, motion, type PanInfo, useMotionValue, useTransform } from 'framer-motion';
-import { CLOSE_RATIO, FLICK_VELOCITY, OPEN_RATIO, PEEK, 
-         type UP, type DOWN, type UNSETTLED, 
-         SHEET_SPRING_DAMPING,
-         SHEET_SPRING_STIFFNESS} from '../type';
+import {
+  CLOSE_RATIO,
+  FLICK_VELOCITY,
+  OPEN_RATIO,
+  PEEK,
+  type UP,
+  type DOWN,
+  type UNSETTLED,
+  SHEET_SPRING_DAMPING,
+  SHEET_SPRING_STIFFNESS,
+} from '../type';
 import './bottomSheet.scss';
 
 const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
@@ -26,6 +33,30 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
 
     return () => resizer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyTouchAction = body.style.touchAction;
+
+    if (open) {
+      html.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
+      body.style.touchAction = 'none';
+    } else {
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.touchAction = previousBodyTouchAction;
+    }
+
+    return () => {
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.touchAction = previousBodyTouchAction;
+    };
+  }, [open]);
 
   const closedOffsetY = Math.max(0, sheetPxHeight - PEEK);
   const overlayOpacity = useTransform(y, [0, Math.max(closedOffsetY, 1)], [1, 0]);

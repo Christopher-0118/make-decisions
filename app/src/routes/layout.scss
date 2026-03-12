@@ -1,16 +1,19 @@
 @use '@/shared/styles/_mixins.scss' as mixins;
 
 .app-root {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--bg-app);
+  overflow: hidden;
 }
 
 .app-main {
   flex: 1;
-  //padding-bottom: calc(110px + env(safe-area-inset-bottom));
+  height: 100%;
+  overflow: hidden;
 }
 
 .app-nav {

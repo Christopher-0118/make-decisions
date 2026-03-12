@@ -19,7 +19,6 @@ export const DEFAULT_SIZE_PX = 85;
 export const SHEET_SPRING_STIFFNESS = 420;
 export const SHEET_SPRING_DAMPING = 38;
 
-
 export type UP = -1;
 export type DOWN = 1;
 export type UNSETTLED = 0;
