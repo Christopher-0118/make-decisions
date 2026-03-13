@@ -14,7 +14,12 @@ import {
 } from '../type';
 import './bottomSheet.scss';
 
-const BottomSheet = ({ children, header, open, onOpenChange }: BottomSheetProps): React.ReactNode => {
+const BottomSheet = ({
+  children,
+  header,
+  open,
+  onOpenChange,
+}: BottomSheetProps): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
   const lastDragDirectionRef = useRef<UP | UNSETTLED | DOWN>(0);
   const [isDragging, setIsDragging] = useState(false);

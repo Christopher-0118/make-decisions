@@ -11,7 +11,9 @@ const navItems = [
 
 const AppNav = () => {
   const location = useLocation();
-  const activeId = navItems.some((item) => item.id === location.pathname) ? location.pathname : '/wheel';
+  const activeId = navItems.some((item) => item.id === location.pathname)
+    ? location.pathname
+    : '/wheel';
 
   return (
     <SegmentedNav
@@ -22,7 +24,9 @@ const AppNav = () => {
       renderItem={(item, isActive) => (
         <NavLink
           to={item.id}
-          className={['appNav__link', isActive ? 'appNav__link--active' : ''].filter(Boolean).join(' ')}
+          className={['appNav__link', isActive ? 'appNav__link--active' : '']
+            .filter(Boolean)
+            .join(' ')}
           aria-label={item.ariaLabel}
         >
           <item.icon />
