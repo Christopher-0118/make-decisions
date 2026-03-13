@@ -1,8 +1,8 @@
 .page {
   min-width: 320px;
-  height: 70vh;
-  height: 70svh;
-  height: 70dvh;
+  height: 100vh; //70vh;
+  height: 100svh; // 70svh;
+  height: 100dvh; // 70dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
