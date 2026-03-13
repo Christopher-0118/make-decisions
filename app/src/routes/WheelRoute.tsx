@@ -2,6 +2,7 @@ import { useMemo, useState, lazy, Suspense } from 'react';
 import Wheel from '@/components/Wheel/Wheel';
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
 import Tabs from '@/components/Tabs/Tabs';
+import AppNav from '@/components/AppNav/AppNav';
 import useRandomizer from '@/hooks/useRandomizer';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useAppSelector } from '@/hooks/useAppSelector';
@@ -45,7 +46,7 @@ const WheelRoute = () => {
         <Wheel segments={segments} rotationDeg={rotation} highlightedIds={highlightedIds} />
       </div>
 
-      <BottomSheet>
+      <BottomSheet header={<AppNav />}>
         <Tabs
           settingsContent={<WheelSettings />}
           historyContent={

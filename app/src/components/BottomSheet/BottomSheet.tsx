@@ -5,6 +5,7 @@ import {
   FLICK_VELOCITY,
   OPEN_RATIO,
   PEEK,
+  type BottomSheetProps,
   type UP,
   type DOWN,
   type UNSETTLED,
@@ -13,7 +14,7 @@ import {
 } from '../type';
 import './bottomSheet.scss';
 
-const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNode => {
+const BottomSheet = ({ children, header }: BottomSheetProps): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
   const lastDragDirectionRef = useRef<UP | UNSETTLED | DOWN>(0);
   const [open, setOpen] = useState(false);
@@ -155,6 +156,8 @@ const BottomSheet = ({ children }: { children: React.ReactNode }): React.ReactNo
         >
           <div className={'grabber'} />
         </button>
+
+        {header ? <div className="sheetHeader">{header}</div> : null}
 
         {/* Content */}
         <div className={'content'}>{children}</div>

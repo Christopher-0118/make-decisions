@@ -1,6 +1,7 @@
 import { useMemo, useState, lazy, Suspense } from 'react';
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
 import Tabs from '@/components/Tabs/Tabs';
+import AppNav from '@/components/AppNav/AppNav';
 import DiceSettings from '@/components/Settings/DiceSettings';
 import DiceGroup from '@/components/Dice/DiceGroup';
 import { useAppSelector } from '@/hooks/useAppSelector';
@@ -66,7 +67,7 @@ const DiceRoute = () => {
         {pendingValues.length ? `Rolled: ${pendingValues.join(', ')}` : 'No result yet'}
       </div>
 
-      <BottomSheet>
+      <BottomSheet header={<AppNav />}>
         <Tabs
           settingsContent={<DiceSettings />}
           historyContent={

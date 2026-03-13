@@ -1,6 +1,7 @@
 import BottomSheet from '@/components/BottomSheet/BottomSheet';
 import Tabs from '@/components/Tabs/Tabs';
 import History from '@/components/History/History';
+import AppNav from '@/components/AppNav/AppNav';
 import Coin from '@/components/Coin/Coin';
 import { useState } from 'react';
 import useRandomizer from '@/hooks/useRandomizer';
@@ -36,7 +37,7 @@ const CoinRoute = () => {
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {result[0] ? `Tossed: ${result[0]}` : 'No result yet'}
       </div>
-      <BottomSheet>
+      <BottomSheet header={<AppNav />}>
         <Tabs
           historyContent={<History entries={history} onClear={() => dispatch(clearAllEntries())} />}
           defaultTab="history"
