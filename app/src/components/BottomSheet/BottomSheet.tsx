@@ -14,10 +14,9 @@ import {
 } from '../type';
 import './bottomSheet.scss';
 
-const BottomSheet = ({ children, header }: BottomSheetProps): React.ReactNode => {
+const BottomSheet = ({ children, header, open, onOpenChange }: BottomSheetProps): React.ReactNode => {
   const sheetRef = useRef<HTMLDivElement | null>(null);
   const lastDragDirectionRef = useRef<UP | UNSETTLED | DOWN>(0);
-  const [open, setOpen] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [sheetPxHeight, setSheetPxHeight] = useState(0);
   const y = useMotionValue(9999);
@@ -95,28 +94,28 @@ const BottomSheet = ({ children, header }: BottomSheetProps): React.ReactNode =>
     setIsDragging(false);
 
     if (velocity.y > FLICK_VELOCITY) {
-      setOpen(false);
+      onOpenChange(false);
       return;
     }
     if (velocity.y < -FLICK_VELOCITY) {
-      setOpen(true);
+      onOpenChange(true);
       return;
     }
     if (lastDirection === 1) {
-      setOpen(false);
+      onOpenChange(false);
       return;
     }
     if (lastDirection === -1) {
-      setOpen(true);
+      onOpenChange(true);
       return;
     }
     if (offset.y > closedOffsetY * CLOSE_RATIO || velocity.y > FLICK_VELOCITY) {
-      setOpen(false);
+      onOpenChange(false);
       return;
     }
 
     if (offset.y < -closedOffsetY * OPEN_RATIO || velocity.y < -FLICK_VELOCITY) {
-      setOpen(true);
+      onOpenChange(true);
     }
   };
 
@@ -124,7 +123,7 @@ const BottomSheet = ({ children, header }: BottomSheetProps): React.ReactNode =>
     <>
       <motion.div
         className={'overlay'}
-        onClick={() => open && setOpen(false)}
+        onClick={() => open && onOpenChange(false)}
         aria-hidden="true"
         style={{
           opacity: overlayOpacity,
@@ -151,7 +150,7 @@ const BottomSheet = ({ children, header }: BottomSheetProps): React.ReactNode =>
         <button
           type="button"
           className={'handleButton'}
-          onClick={() => setOpen(!open)}
+          onClick={() => onOpenChange(!open)}
           aria-label={open ? 'Close panel' : 'Open panel'}
         >
           <div className={'grabber'} />

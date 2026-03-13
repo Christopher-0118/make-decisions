@@ -54,6 +54,8 @@ export type TabProps = {
 export type BottomSheetProps = {
   children: React.ReactNode;
   header?: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 export type TabsProps = {
