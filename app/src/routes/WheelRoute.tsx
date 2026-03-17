@@ -46,7 +46,8 @@ const WheelRoute = () => {
       clearSpinTimeouts();
 
       const currentIndex = segments.findIndex((segment) => segment.id === runnerId);
-      const startIndex = currentIndex >= 0 ? currentIndex : runnerIndexRef.current % segments.length;
+      const startIndex =
+        currentIndex >= 0 ? currentIndex : runnerIndexRef.current % segments.length;
       const targetIndex = segments.findIndex((segment) => segment.id === selectedResults[0].id);
 
       if (targetIndex < 0) return;
@@ -90,6 +91,12 @@ const WheelRoute = () => {
 
   const spin = (count: number) => {
     if (segments.length === 0) return;
+
+    if (isAnimating) {
+      clearSpinTimeouts();
+      setIsAnimating(false);
+      return;
+    }
 
     const generatedResults = generate(count);
     setIsAnimating(true);
