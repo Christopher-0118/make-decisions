@@ -9,9 +9,9 @@
 }
 
 .sheet {
+  margin: 0 auto;
   position: fixed;
-  left: 0;
-  right: 0;
+  width: min(700px, 100%);
   bottom: 0;
   z-index: 20;
   height: 70vh;
