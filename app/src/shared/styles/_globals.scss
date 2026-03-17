@@ -7,13 +7,18 @@
 }
 
 html {
+  height: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow: hidden;
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   min-width: 320px;
+  max-width: 700px;
   min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
   font-family:
     system-ui,
     -apple-system,
@@ -28,10 +33,15 @@ body {
   background: var(--bg-app);
   color: var(--icon-color);
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  overflow: hidden;
 }
 
 h1 {
@@ -50,7 +60,7 @@ button {
   font-size: 1em;
   font-weight: var(--font-weight-medium);
   font-family: inherit;
-  background-color: rgba(0, 0, 0, 0.9);
+  color: var(--icon-color);
   cursor: pointer;
   box-shadow: var(--shadow-nav-edge);
   transition:
@@ -61,7 +71,6 @@ button {
 
 button:focus {
   outline: none;
-  //box-shadow: none;
 }
 
 button:active {

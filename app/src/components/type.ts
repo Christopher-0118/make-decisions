@@ -3,7 +3,7 @@ import type { die, HistoryResults } from '@/store/type';
 // components
 export const RADIUS = 50;
 export const CENTER = 50;
-export const PEEK = 10;
+export const PEEK = 80;
 export const CLOSE_RATIO = 0.3;
 export const OPEN_RATIO = 0.15;
 export const FLICK_VELOCITY = 800;
@@ -16,9 +16,14 @@ export const COUNTS = [1, 2, 3, 4, 5] as const;
 export const DELAYS = [40, 60, 90, 130, 190, 270, 380];
 export const DEFAULT_DELAY = 80;
 export const DEFAULT_SIZE_PX = 85;
+export const SHEET_SPRING_STIFFNESS = 420;
+export const SHEET_SPRING_DAMPING = 38;
+
+export type UP = -1;
+export type DOWN = 1;
+export type UNSETTLED = 0;
 
 //Coin
-
 export type CoinSide = 'heads' | 'tails';
 
 export type CoinProps = {
@@ -44,6 +49,13 @@ export type TabProps = {
   label: string;
   isActive: boolean;
   onSelect: (id: string) => void;
+};
+
+export type BottomSheetProps = {
+  children: React.ReactNode;
+  header?: React.ReactNode;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
 export type TabsProps = {

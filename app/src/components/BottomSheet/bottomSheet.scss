@@ -4,28 +4,33 @@
   position: fixed;
   inset: 0;
   background: rgb(102 104 116 / 35%);
-  z-index: 40;
+  z-index: 10;
   touch-action: none;
 }
 
 .sheet {
+  margin: 0 auto;
   position: fixed;
-  left: 0;
-  right: 0;
+  width: min(700px, 100%);
   bottom: 0;
-  z-index: 50;
+  z-index: 20;
+  height: 70vh;
+  height: 70svh;
   height: 70dvh;
+  padding: 0 10px;
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
   display: flex;
   flex-direction: column;
   touch-action: none;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
 
   @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   @include mixins.glass-shadow(var(--shadow-sheet));
 }
 
 .handleButton {
-  padding: 4px 0;
+  padding: 5px 0;
   border: none;
   box-shadow: none;
   cursor: pointer;
@@ -38,6 +43,10 @@
   border-radius: var(--radius-pill);
   background: rgba(0, 0, 0, var(--opacity-light));
   margin: 0 auto;
+}
+
+.sheetHeader {
+  flex-shrink: 0;
 }
 
 .headerRow {
@@ -66,7 +75,10 @@
 }
 
 .content {
-  padding: 0 14px 14px;
+  padding: 20px 14px 14px;
   overflow-y: auto;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  flex: 1;
+  min-height: 0;
 }

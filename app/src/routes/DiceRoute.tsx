@@ -1,21 +1,14 @@
-import { useMemo, useState, lazy, Suspense } from 'react';
-import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import Tabs from '@/components/Tabs/Tabs';
-import DiceSettings from '@/components/Settings/DiceSettings';
+import { useMemo, useState } from 'react';
 import DiceGroup from '@/components/Dice/DiceGroup';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { addEntry, clearAllEntries } from '@/store/diceHistorySlice';
-import './page.css';
-
-const History = lazy(() => import('@/components/History/History'));
+import { addEntry } from '@/store/diceHistorySlice';
+import './page.scss';
 
 const DiceRoute = () => {
   const dispatch = useAppDispatch();
-
-  const history = useAppSelector((state) => state.diceHistory.entries);
   const faces = useAppSelector((state) => state.diceSettings.dice);
   const count = useAppSelector((state) => state.diceSettings.count);
 
@@ -48,29 +41,23 @@ const DiceRoute = () => {
 
   return (
     <div className={'page'}>
-      <DiceGroup
-        count={count}
-        faces={faces}
-        values={displayValues}
-        isRolling={isRolling}
-        onRollEnd={handleRollEnd}
-      />
-
-      <button className={'goButton'} onClick={roll} disabled={isRolling}>
-        {isRolling ? 'Rolling...' : 'Roll'}
-      </button>
-
-      <BottomSheet>
-        <Tabs
-          settingsContent={<DiceSettings />}
-          historyContent={
-            <Suspense fallback={<div>Loading...</div>}>
-              <History entries={history} onClear={() => dispatch(clearAllEntries())} />
-            </Suspense>
-          }
-          defaultTab="settings"
+      <button
+        className={'button-like button-like__roll'}
+        onClick={roll}
+        disabled={isRolling}
+        aria-label="roll"
+      >
+        <DiceGroup
+          count={count}
+          faces={faces}
+          values={displayValues}
+          isRolling={isRolling}
+          onRollEnd={handleRollEnd}
         />
-      </BottomSheet>
+      </button>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {pendingValues.length ? `Rolled: ${pendingValues.join(', ')}` : 'No result yet'}
+      </div>
     </div>
   );
 };
