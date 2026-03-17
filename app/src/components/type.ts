@@ -68,8 +68,8 @@ export type TabsProps = {
 
 export type WheelProps = {
   segments: Segment[];
-  rotationDeg?: number;
   highlightedIds?: string[];
+  runnerId?: string | null;
   size?: number;
 };
 

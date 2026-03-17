@@ -14,7 +14,10 @@
 .wheel__slice-path {
   stroke: tokens.$color-wheel-hub-fill;
   stroke-width: tokens.$wheel-slice-stroke-width;
-  transition: filter tokens.$duration-medium ease;
+  transition:
+    fill tokens.$duration-medium ease,
+    filter tokens.$duration-medium ease,
+    transform tokens.$duration-medium ease;
 }
 
 .wheel__slice-path--primary {
@@ -36,7 +39,18 @@
   transform-box: view-box;
 }
 
-.wheel__slice-path--active + .wheel__label {
+.wheel__slice-path--runner {
+  animation: pulse-slice 0.55s ease-in-out infinite;
+  fill: #f1f1f7;
+  transform-origin: 50px 50px;
+  transform-box: view-box;
+}
+
+.wheel__label--active {
+  fill: tokens.$color-active-element-light;
+}
+
+.wheel__label--runner {
   fill: tokens.$color-active-element-light;
 }
 

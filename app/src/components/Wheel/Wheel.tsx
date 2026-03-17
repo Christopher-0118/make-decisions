@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { CENTER, RADIUS, type WheelProps } from '../type';
 import './Wheel.scss';
 
 const HUB_RADIUS = 5;
 
-const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
+const Wheel = ({ segments, highlightedIds, runnerId = null }: WheelProps) => {
   const highlighted = useMemo(() => new Set(highlightedIds), [highlightedIds]);
   const slices = useMemo(() => {
     const segmentsNumber = segments.length;
@@ -59,22 +58,31 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
   }, [segments]);
 
   return (
-    <motion.svg
-      className="wheel"
-      viewBox="0 0 100 100"
-      animate={{ rotate: rotationDeg }}
-      transition={{ duration: 1.2, ease: [0.17, 0.67, 0.12, 1] }}
-    >
+    <svg className="wheel" viewBox="0 0 100 100">
       <circle className="wheel__base" cx={CENTER} cy={CENTER} r={RADIUS} />
       {slices.map((s) => {
         const isOn = highlighted.has(s.seg.id);
-        const state = isOn ? 'wheel__slice-path wheel__slice-path--active' : 'wheel__slice-path';
+        const isRunner = runnerId === s.seg.id;
+        const state = [
+          'wheel__slice-path',
+          isOn ? 'wheel__slice-path--active' : '',
+          isRunner ? 'wheel__slice-path--runner' : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
+        const labelState = [
+          'wheel__label',
+          isOn ? 'wheel__label--active' : '',
+          isRunner ? 'wheel__label--runner' : '',
+        ]
+          .filter(Boolean)
+          .join(' ');
 
         return (
           <g key={s.key} className="wheel__slice">
             <path d={s.d} className={`${state} ${s.toneClass}`} />
             <text
-              className="wheel__label"
+              className={labelState}
               x={s.textPos.x}
               y={s.textPos.y}
               textAnchor="middle"
@@ -87,7 +95,7 @@ const Wheel = ({ segments, highlightedIds, rotationDeg = 0 }: WheelProps) => {
         );
       })}
       <circle className="wheel__hub" cx={CENTER} cy={CENTER} r={HUB_RADIUS} />
-    </motion.svg>
+    </svg>
   );
 };
 
