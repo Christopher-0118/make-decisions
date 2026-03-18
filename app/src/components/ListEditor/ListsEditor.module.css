@@ -1,0 +1,147 @@
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+.blockTitle {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.addBtn {
+  margin-right: 8px;
+  padding: 0;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.listCard {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  align-items: stretch;
+  border-radius: 14px;
+  border: 2px solid rgba(0, 0, 0, 0.375);
+  transition: border-color 550ms ease;
+}
+
+.rowActive {
+  border: 2px solid rgba(76, 175, 80, 0.35);
+}
+
+.rowMain {
+  padding: 12px 12px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rowTitle {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.rowMeta {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.rowToggle {
+  border: 0;
+  font-size: 0;
+
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addRow {
+  margin-top: 6px;
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  transition: transform 180ms ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.editor {
+  padding: 12px 12px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+}
+
+.editorTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editorLine {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0 12px;
+  background: #fff;
+  font-size: 14px;
+}
+
+.input:last-of-type {
+  border: none;
+}
