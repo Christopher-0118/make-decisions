@@ -26,6 +26,11 @@ const WheelRoute = () => {
         : [],
     [activeList],
   );
+  const emptyStateMessage = !activeList
+    ? 'Create a list'
+    : segments.length === 0
+      ? 'This list is empty'
+      : null;
   const { result, generate } = useRandomizer({ seed: SEED, values: segments, unique: true });
   const [runnerId, setRunnerId] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -114,13 +119,17 @@ const WheelRoute = () => {
 
   return (
     <div className={'page'}>
-      <div className="button-like__spin" onClick={() => spin(count)}>
-        <Wheel
-          segments={segments}
-          highlightedIds={highlightedIds}
-          runnerId={isAnimating ? runnerId : null}
-        />
-      </div>
+      {emptyStateMessage ? (
+        <div className="page__empty-state">{emptyStateMessage}</div>
+      ) : (
+        <div className="button-like__spin" onClick={() => spin(count)}>
+          <Wheel
+            segments={segments}
+            highlightedIds={highlightedIds}
+            runnerId={isAnimating ? runnerId : null}
+          />
+        </div>
+      )}
     </div>
   );
 };
