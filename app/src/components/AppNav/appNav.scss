@@ -1,0 +1,38 @@
+.appNav {
+  flex-shrink: 0;
+}
+
+.appNav__link {
+  min-height: 46px;
+  border-radius: var(--radius-pill);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--icon-color);
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &--active {
+    color: var(--color-active-element);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+}
+
+.appNav__label {
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}

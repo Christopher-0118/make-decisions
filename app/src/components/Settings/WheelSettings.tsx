@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect } from 'react';
-import styles from './Settings.module.css';
 import CountSelector from '../CountSelector/CountSelector';
 import ListsEditor from '../ListEditor/ListsEditor';
 import { clamp } from '../ListEditor/listMutations';
@@ -14,6 +13,7 @@ import {
   editListItem,
   addListItem,
 } from '@/store/wheelListsSlice';
+import styles from './settings.module.css';
 
 const WheelSettings = () => {
   const dispatch = useAppDispatch();

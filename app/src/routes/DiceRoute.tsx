@@ -1,21 +1,14 @@
-import { useMemo, useState, lazy, Suspense } from 'react';
-import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import Tabs from '@/components/Tabs/Tabs';
-import DiceSettings from '@/components/Settings/DiceSettings';
+import { useMemo, useState } from 'react';
 import DiceGroup from '@/components/Dice/DiceGroup';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { addEntry, clearAllEntries } from '@/store/diceHistorySlice';
+import { addEntry } from '@/store/diceHistorySlice';
 import './page.scss';
-
-const History = lazy(() => import('@/components/History/History'));
 
 const DiceRoute = () => {
   const dispatch = useAppDispatch();
-
-  const history = useAppSelector((state) => state.diceHistory.entries);
   const faces = useAppSelector((state) => state.diceSettings.dice);
   const count = useAppSelector((state) => state.diceSettings.count);
 
@@ -48,12 +41,11 @@ const DiceRoute = () => {
 
   return (
     <div className={'page'}>
-
-      <button 
-        className={'button-like'} 
-        onClick={roll} 
+      <button
+        className={'button-like button-like__roll'}
+        onClick={roll}
         disabled={isRolling}
-        aria-label='roll'
+        aria-label="roll"
       >
         <DiceGroup
           count={count}
@@ -63,25 +55,9 @@ const DiceRoute = () => {
           onRollEnd={handleRollEnd}
         />
       </button>
-      <div
-        className="sr-only"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        {pendingValues.length ? `Rolled: ${pendingValues.join(", ")}` : "No result yet"}
-    </div>
-
-      <BottomSheet>
-        <Tabs
-          settingsContent={<DiceSettings />}
-          historyContent={
-            <Suspense fallback={<div>Loading...</div>}>
-              <History entries={history} onClear={() => dispatch(clearAllEntries())} />
-            </Suspense>
-          }
-          defaultTab="settings"
-        />
-      </BottomSheet>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {pendingValues.length ? `Rolled: ${pendingValues.join(', ')}` : 'No result yet'}
+      </div>
     </div>
   );
 };
