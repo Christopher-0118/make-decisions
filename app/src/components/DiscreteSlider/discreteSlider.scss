@@ -4,7 +4,7 @@
 
 .discrete-slider {
   display: grid;
-  grid-template-columns: 90px auto; // left column is fixed width
+  grid-template-columns: 90px auto;
   align-items: center;
   gap: 15px;
 }
@@ -28,8 +28,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: tokens.$gap-xl; // 12px from tokens
-  height: 5px; // no matching token for 5px track height
+  top: tokens.$gap-lg;
+  height: 8px;
   border-radius: tokens.$radius-pill;
   @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   overflow: hidden;
@@ -37,15 +37,15 @@
 
 .fill {
   height: 100%;
-  background: tokens.$color-active-element-light; // use active element color token
-  opacity: tokens.$opacity-prominent; // closest match to original 0.55
+  background: tokens.$color-active-element-light;
+  opacity: tokens.$opacity-prominent;
 }
 
 .marks {
   position: absolute;
   left: 0;
   right: 0;
-  top: 10px;
+  top: tokens.$gap-sm;
   display: flex;
   justify-content: space-between;
   pointer-events: auto;
@@ -54,11 +54,12 @@
 .mark {
   border-radius: tokens.$radius-pill;
   padding: 0;
-  @include mixins.icon-button(tokens.$gap-lg, tokens.$font-size-md);
+  @include mixins.icon-button(tokens.$gap-xxl, tokens.$font-size-md);
 }
 
 .mark__active {
   background: tokens.$color-active-element-light;
+  color: tokens.$color-active-element-light;
 }
 
 .mark__inactive {
