@@ -55,6 +55,7 @@
   border-radius: tokens.$radius-pill;
   padding: 0;
   @include mixins.icon-button(tokens.$gap-xxl, tokens.$font-size-md);
+  overflow: hidden;
 }
 
 .mark__icon {
