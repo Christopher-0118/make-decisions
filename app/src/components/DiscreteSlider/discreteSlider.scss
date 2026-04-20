@@ -57,6 +57,14 @@
   @include mixins.icon-button(tokens.$gap-xxl, tokens.$font-size-md);
 }
 
+.mark__icon {
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
 .mark__active {
   background: tokens.$color-active-element-light;
   color: tokens.$color-active-element-light;
