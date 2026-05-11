@@ -131,4 +131,8 @@ export type SpriteMeta = {
   rows: number;
   frameSize: number;
   rollFrames: number;
+  rollStartCol?: number;
+  idleStartCol?: number;
+  rollRow?: number;
+  idleRow?: number;
 };

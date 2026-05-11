@@ -5,14 +5,23 @@ import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { addEntry } from '@/store/diceHistorySlice';
+import { DICE_CONFIG } from '@/store/type';
 import './page.scss';
 
 const DiceRoute = () => {
   const dispatch = useAppDispatch();
   const faces = useAppSelector((state) => state.diceSettings.dice);
   const count = useAppSelector((state) => state.diceSettings.count);
+  const config = DICE_CONFIG[faces];
 
-  const values = useMemo(() => Array.from({ length: faces }, (_, i) => i + 1), [faces]);
+  const values = useMemo(
+    () =>
+      Array.from(
+        { length: config.maxValue - config.minValue + 1 },
+        (_, i) => config.minValue + i,
+      ),
+    [config.minValue, config.maxValue],
+  );
 
   const { generate } = useRandomizer<number>({
     seed: SEED,
@@ -22,7 +31,7 @@ const DiceRoute = () => {
 
   const [isRolling, setIsRolling] = useState(false);
   const [pendingValues, setPendingValues] = useState<number[]>([]);
-  const [displayValues, setDisplayValues] = useState<number[]>([1]);
+  const [displayValues, setDisplayValues] = useState<number[]>([config.minValue]);
   const pendingValuesRef = useRef<number[]>([]);
 
   const finalizeRoll = useCallback(() => {

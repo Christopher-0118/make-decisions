@@ -32,6 +32,7 @@
   height: 8px;
   border-radius: tokens.$radius-pill;
   @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, tokens.$opacity-subtle);
   overflow: hidden;
 }
 
@@ -68,7 +69,12 @@
 
 .mark__active {
   background: tokens.$color-active-element-light;
-  color: tokens.$color-active-element-light;
+}
+
+.mark__active {
+  .mark__icon {
+    filter: invert(1);
+  }
 }
 
 .mark__inactive {
@@ -117,4 +123,11 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .track {
+    background: rgba(255, 255, 255, tokens.$opacity-faint);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, tokens.$opacity-light);
+  }
 }
