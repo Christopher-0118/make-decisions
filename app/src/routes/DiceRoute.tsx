@@ -52,7 +52,7 @@ const DiceRoute = () => {
     const generated = generate(count);
     pendingValuesRef.current = generated;
     setPendingValues(generated);
-    dispatch(addEntry(generated));
+    dispatch(addEntry(generated, faces));
     setIsRolling(true);
   };
 

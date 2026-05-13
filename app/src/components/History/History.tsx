@@ -14,8 +14,9 @@ const History = ({ entries, onClear }: HistoryProps) => {
       {entries.map((item, index) => (
         <label className="result" key={index}>
           <label>{item.time}</label>
+          {item.diceFaces ? <label>{`d${item.diceFaces}`}</label> : ''}
           <label>{Array.isArray(item.results) ? item.results.join(', ') : item.results}</label>
-          {item.resultsSum ? <label>{item.resultsSum}</label> : ''}
+          {item.resultsSum !== undefined ? <label>{item.resultsSum}</label> : ''}
         </label>
       ))}
     </div>

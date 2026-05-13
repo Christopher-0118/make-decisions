@@ -6,6 +6,7 @@ export type HistoryResults = {
   id: number;
   time: string;
   results: string[] | CoinSide | number[];
+  diceFaces?: die;
   resultsSum?: number;
 };
 
