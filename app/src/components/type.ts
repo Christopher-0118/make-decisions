@@ -104,6 +104,7 @@ export type DiscreteSliderProps<T extends number> = {
   values: readonly T[];
   value: T;
   onChange: (next: T) => void;
+  markIcons?: Partial<Record<T, string>>;
 };
 
 // Dice
@@ -130,4 +131,8 @@ export type SpriteMeta = {
   rows: number;
   frameSize: number;
   rollFrames: number;
+  rollStartCol?: number;
+  idleStartCol?: number;
+  rollRow?: number;
+  idleRow?: number;
 };

@@ -6,13 +6,19 @@ import coinHistorySlice from './coinHistorySlice';
 import diceSettingsSlice from './diceSettingsSlice';
 import diceHistorySlice from './diceHistorySlice';
 import { loadListsFromStorage, saveListsToStorage } from '@/components/Wheel/listStorage';
-import { loadSettingsFromStorage, saveSettingsToStorage } from './settingsStorage';
+import {
+  loadDiceSettingsFromStorage,
+  loadSettingsFromStorage,
+  saveDiceSettingsToStorage,
+  saveSettingsToStorage,
+} from './settingsStorage';
 import { PRESET_LISTS } from '@/components/Wheel/presets';
 
 // load persisted lists and settings from localStorage
 const loadedLists = loadListsFromStorage();
 const initialLists = loadedLists ?? PRESET_LISTS;
 const loadedSettings = loadSettingsFromStorage();
+const loadedDiceSettings = loadDiceSettingsFromStorage();
 const defaultActive = loadedSettings?.activeList ?? initialLists[0]?.id ?? '';
 const defaultCount = loadedSettings?.count ?? 1;
 
@@ -33,11 +39,16 @@ export const store = configureStore({
       activeList: defaultActive,
       count: defaultCount,
     },
+    diceSettings: loadedDiceSettings ?? {
+      dice: 6,
+      count: 3,
+    },
   },
 });
 
 let prevList = store.getState().wheelLists.collection;
 let prevSettings = store.getState().wheelSettings;
+let prevDiceSettings = store.getState().diceSettings;
 
 store.subscribe(() => {
   const state = store.getState();
@@ -52,6 +63,12 @@ store.subscribe(() => {
   if (nextSettings !== prevSettings) {
     prevSettings = nextSettings;
     saveSettingsToStorage(nextSettings);
+  }
+
+  const nextDiceSettings = state.diceSettings;
+  if (nextDiceSettings !== prevDiceSettings) {
+    prevDiceSettings = nextDiceSettings;
+    saveDiceSettingsToStorage(nextDiceSettings);
   }
 });
 
