@@ -16,7 +16,11 @@ const CoinRoute = () => {
   const coinSide: CoinSide = result[0] ?? 'heads';
   const [isFlipping, setIsFlipping] = useState<boolean>(false);
   const handleFlip = () => {
-    if (isFlipping) return;
+    if (isFlipping) {
+      setIsFlipping(false);
+      return;
+    }
+
     const picked = generate(SIDE);
     if (picked[0]) dispatch(addEntry(picked[0]));
     setIsFlipping(true);
@@ -24,11 +28,19 @@ const CoinRoute = () => {
 
   return (
     <div className="page">
-      <button className="button-like button-like__toss" onClick={handleFlip}>
+      <button
+        className="button-like button-like__toss"
+        onClick={handleFlip}
+        aria-label={isFlipping ? 'stop flip and show result' : 'toss coin'}
+      >
         <Coin side={coinSide} isFlipping={isFlipping} onFlipEnd={() => setIsFlipping(false)} />
       </button>
       <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {result[0] ? `Tossed: ${result[0]}` : 'No result yet'}
+        {isFlipping
+          ? 'Flipping. Tap again to stop and show the result.'
+          : result[0]
+            ? `Tossed: ${result[0]}`
+            : 'No result yet'}
       </div>
     </div>
   );

@@ -16,7 +16,10 @@ const Tabs = ({
   swipeEnabled = true,
   swipeThresholdPx = 60,
 }: TabsProps) => {
-  const [active, setActive] = useState<'settings' | 'history'>(defaultTab);
+  const hasSettingsContent = Boolean(settingsContent);
+  const initialTab = hasSettingsContent ? defaultTab : 'history';
+  const [active, setActive] = useState<'settings' | 'history'>(initialTab);
+
   const handleSelect = (tab: 'settings' | 'history') => {
     setActive(tab);
   };
@@ -40,7 +43,7 @@ const Tabs = ({
   return (
     <div className="root">
       <SegmentedNav
-        items={settingsContent ? [...tabItems] : [tabItems[1]]}
+        items={hasSettingsContent ? [...tabItems] : [tabItems[1]]}
         activeId={active}
         ariaLabel="Tabs"
         className="tabsNav"

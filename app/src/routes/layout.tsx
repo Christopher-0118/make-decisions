@@ -30,6 +30,7 @@ export default function Layout() {
 
   const sheetContent = isWheelRoute ? (
     <Tabs
+      key="wheel-tabs"
       settingsContent={<WheelSettings />}
       historyContent={
         <Suspense fallback={<div>Loading...</div>}>
@@ -40,6 +41,7 @@ export default function Layout() {
     />
   ) : isDiceRoute ? (
     <Tabs
+      key="dice-tabs"
       settingsContent={<DiceSettings />}
       historyContent={
         <Suspense fallback={<div>Loading...</div>}>
@@ -50,6 +52,7 @@ export default function Layout() {
     />
   ) : isCoinRoute ? (
     <Tabs
+      key="coin-tabs"
       historyContent={
         <Suspense fallback={<div>Loading...</div>}>
           <History entries={coinHistory} onClear={() => dispatch(clearCoinHistory())} />
