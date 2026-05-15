@@ -4,7 +4,7 @@
 
 .discrete-slider {
   display: grid;
-  grid-template-columns: 90px auto; // left column is fixed width
+  grid-template-columns: 90px auto;
   align-items: center;
   gap: 15px;
 }
@@ -28,24 +28,25 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: tokens.$gap-xl; // 12px from tokens
-  height: 5px; // no matching token for 5px track height
+  top: tokens.$gap-lg;
+  height: 8px;
   border-radius: tokens.$radius-pill;
   @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, tokens.$opacity-subtle);
   overflow: hidden;
 }
 
 .fill {
   height: 100%;
-  background: tokens.$color-active-element-light; // use active element color token
-  opacity: tokens.$opacity-prominent; // closest match to original 0.55
+  background: tokens.$color-active-element-light;
+  opacity: tokens.$opacity-prominent;
 }
 
 .marks {
   position: absolute;
   left: 0;
   right: 0;
-  top: 10px;
+  top: tokens.$gap-sm;
   display: flex;
   justify-content: space-between;
   pointer-events: auto;
@@ -54,11 +55,26 @@
 .mark {
   border-radius: tokens.$radius-pill;
   padding: 0;
-  @include mixins.icon-button(tokens.$gap-lg, tokens.$font-size-md);
+  @include mixins.icon-button(tokens.$gap-xxl, tokens.$font-size-md);
+  overflow: hidden;
+}
+
+.mark__icon {
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .mark__active {
   background: tokens.$color-active-element-light;
+}
+
+.mark__active {
+  .mark__icon {
+    filter: invert(1);
+  }
 }
 
 .mark__inactive {
@@ -107,4 +123,11 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .track {
+    background: rgba(255, 255, 255, tokens.$opacity-faint);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, tokens.$opacity-light);
+  }
 }

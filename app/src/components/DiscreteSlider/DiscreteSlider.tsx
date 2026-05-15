@@ -7,6 +7,7 @@ const DiscreteSlider = <T extends number>({
   values,
   value,
   onChange,
+  markIcons,
 }: DiscreteSliderProps<T>) => {
   const count = values.length;
   const index = Math.max(0, values.indexOf(value));
@@ -46,6 +47,7 @@ const DiscreteSlider = <T extends number>({
     values.map((val, idx) => {
       const active = idx <= index;
       const current = idx === index;
+      const markIcon = markIcons?.[val];
 
       return (
         <button
@@ -59,7 +61,9 @@ const DiscreteSlider = <T extends number>({
           ].join(' ')}
           onClick={() => onChange(val)}
           aria-label={`Set ${label} to ${val}`}
-        />
+        >
+          {markIcon && <img className="mark__icon" src={markIcon} alt="" aria-hidden="true" />}
+        </button>
       );
     });
 

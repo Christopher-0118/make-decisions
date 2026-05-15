@@ -1,25 +1,27 @@
-import { useMemo, useState, lazy, Suspense } from 'react';
-import BottomSheet from '@/components/BottomSheet/BottomSheet';
-import Tabs from '@/components/Tabs/Tabs';
-import DiceSettings from '@/components/Settings/DiceSettings';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import DiceGroup from '@/components/Dice/DiceGroup';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import useRandomizer from '@/hooks/useRandomizer';
 import { SEED } from './types';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { addEntry, clearAllEntries } from '@/store/diceHistorySlice';
+import { addEntry } from '@/store/diceHistorySlice';
+import { DICE_CONFIG } from '@/store/type';
 import './page.scss';
-
-const History = lazy(() => import('@/components/History/History'));
 
 const DiceRoute = () => {
   const dispatch = useAppDispatch();
-
-  const history = useAppSelector((state) => state.diceHistory.entries);
   const faces = useAppSelector((state) => state.diceSettings.dice);
   const count = useAppSelector((state) => state.diceSettings.count);
+  const config = DICE_CONFIG[faces];
 
-  const values = useMemo(() => Array.from({ length: faces }, (_, i) => i + 1), [faces]);
+  const values = useMemo(
+    () =>
+      Array.from(
+        { length: config.maxValue - config.minValue + 1 },
+        (_, i) => config.minValue + i,
+      ),
+    [config.minValue, config.maxValue],
+  );
 
   const { generate } = useRandomizer<number>({
     seed: SEED,
@@ -29,21 +31,33 @@ const DiceRoute = () => {
 
   const [isRolling, setIsRolling] = useState(false);
   const [pendingValues, setPendingValues] = useState<number[]>([]);
-  const [displayValues, setDisplayValues] = useState<number[]>([1]);
+  const [displayValues, setDisplayValues] = useState<number[]>([config.minValue]);
+  const pendingValuesRef = useRef<number[]>([]);
+
+  const finalizeRoll = useCallback(() => {
+    if (!pendingValuesRef.current.length) return;
+
+    setDisplayValues(pendingValuesRef.current);
+    setIsRolling(false);
+  }, []);
 
   const roll = () => {
-    if (isRolling) return;
+    if (isRolling) {
+      finalizeRoll();
+      return;
+    }
+
     if (!Number.isFinite(count) || count <= 0) return;
 
     const generated = generate(count);
+    pendingValuesRef.current = generated;
     setPendingValues(generated);
-    dispatch(addEntry(generated));
+    dispatch(addEntry(generated, faces));
     setIsRolling(true);
   };
 
   const handleRollEnd = () => {
-    setDisplayValues(pendingValues);
-    setIsRolling(false);
+    finalizeRoll();
   };
 
   return (
@@ -51,8 +65,7 @@ const DiceRoute = () => {
       <button
         className={'button-like button-like__roll'}
         onClick={roll}
-        disabled={isRolling}
-        aria-label="roll"
+        aria-label={isRolling ? 'stop roll and show result' : 'roll'}
       >
         <DiceGroup
           count={count}
@@ -63,20 +76,12 @@ const DiceRoute = () => {
         />
       </button>
       <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {pendingValues.length ? `Rolled: ${pendingValues.join(', ')}` : 'No result yet'}
+        {isRolling
+          ? 'Rolling. Tap again to stop and show the result.'
+          : pendingValues.length
+            ? `Rolled: ${pendingValues.join(', ')}`
+            : 'No result yet'}
       </div>
-
-      <BottomSheet>
-        <Tabs
-          settingsContent={<DiceSettings />}
-          historyContent={
-            <Suspense fallback={<div>Loading...</div>}>
-              <History entries={history} onClear={() => dispatch(clearAllEntries())} />
-            </Suspense>
-          }
-          defaultTab="settings"
-        />
-      </BottomSheet>
     </div>
   );
 };
