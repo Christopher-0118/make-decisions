@@ -41,7 +41,7 @@ const Tabs = ({
   };
 
   return (
-    <div className="root">
+    <div className="tabsLayout">
       <SegmentedNav
         items={hasSettingsContent ? [...tabItems] : [tabItems[1]]}
         activeId={active}
@@ -60,11 +60,11 @@ const Tabs = ({
         )}
       />
 
-      <div className="panel" role="tabpanel">
+      <div className="tabsPanel" role="tabpanel">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={active}
-            className="panelInner"
+            className="tabsPanelInner"
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -10, opacity: 0 }}

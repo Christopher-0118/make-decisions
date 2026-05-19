@@ -29,15 +29,19 @@
 }
 
 .lists {
+  padding: 0 7px 0 1px;
   display: flex;
   flex-direction: column;
   row-gap: var(--gap-sm);
 }
 
 .listCard {
+  position: relative;
   background-color: transparent;
   border-radius: 8px;
+  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
   @include mixins.glass-shadow(var(--shadow-nav-edge));
+  @include mixins.glass-inner-highlight(0.6);
   overflow: hidden;
 }
 
@@ -47,26 +51,30 @@
 }
 
 .row-main {
+  position: relative;
   padding: var(--space-pad-m);
   border-radius: 0;
   text-align: left;
   cursor: pointer;
-  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
-  @include mixins.glass-inner-highlight(0.6);
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
   &--active {
     color: tokens.$color-active-element-light;
   }
 }
 
 .rowToggle {
+  position: relative;
   border: 0;
   font-size: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0;
-  @include mixins.glass-surface(var(--glass-surface), var(--glass-surface-fallback));
-  @include mixins.glass-inner-highlight(0.6);
+  box-shadow: none;
+  overflow: hidden;
+  background: transparent;
 }
 
 .addRow {
