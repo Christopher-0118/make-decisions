@@ -9,11 +9,12 @@ const navItems = [
   { id: '/coin', label: 'Coin', icon: Coins, ariaLabel: 'coin' },
 ];
 
+const isRoutePath = (pathname: string, route: string) =>
+  pathname === route || pathname.startsWith(`${route}/`);
+
 const AppNav = () => {
   const location = useLocation();
-  const activeId = navItems.some((item) => item.id === location.pathname)
-    ? location.pathname
-    : '/wheel';
+  const activeId = navItems.find((item) => isRoutePath(location.pathname, item.id))?.id ?? '/wheel';
 
   return (
     <SegmentedNav

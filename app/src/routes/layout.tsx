@@ -15,6 +15,9 @@ import './layout.scss';
 
 const History = lazy(() => import('@/components/History/History'));
 
+const isRoutePath = (pathname: string, route: string) =>
+  pathname === route || pathname.startsWith(`${route}/`);
+
 export default function Layout() {
   const location = useLocation();
   const dispatch = useAppDispatch();
@@ -24,9 +27,9 @@ export default function Layout() {
   const coinHistory = useAppSelector((state) => state.coinHistory.entries);
 
   const pathname = location.pathname;
-  const isWheelRoute = pathname.startsWith('/wheel');
-  const isDiceRoute = pathname.startsWith('/dice');
-  const isCoinRoute = pathname.startsWith('/coin');
+  const isWheelRoute = isRoutePath(pathname, '/wheel');
+  const isDiceRoute = isRoutePath(pathname, '/dice');
+  const isCoinRoute = isRoutePath(pathname, '/coin');
 
   const sheetContent = isWheelRoute ? (
     <Tabs
